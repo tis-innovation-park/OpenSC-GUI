@@ -7,3 +7,5 @@ The big advantages of the OpenSC-GUI are:
 * cross-platform
 * open-source
 * works for a big variety of smart-cards
+
+For more informations visit our [WIKI](https://github.com/tis-innovation-park/BuergerTest/wiki) site.
