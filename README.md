@@ -1,11 +1,11 @@
 OpenSC GUI
 ============
 
-A simple GUI created for [OpenSC](https://github.com/OpenSC/OpenSC/wiki) to have an easy way to manage the card pin of smart cards. The project was initiated by [TIS-innovation-park](https://tis.bz.it/en) for the [testingmachine.eu project](https://testingmachine.eu/). OpenSC-GUI was developed in C++ with the [QT-Framework](http://qt-project.org) in collaboration with KMS-Mechatronics.
+A simple GUI created for [OpenSC](https://github.com/OpenSC/OpenSC/wiki) to have an easy way to manage the pin of smart cards. The project was initiated by [TIS-innovation-park](https://tis.bz.it/en) for the [testingmachine.eu project](https://testingmachine.eu/). OpenSC-GUI was developed in C++ with the [QT-Framework](http://qt-project.org) in collaboration with KMS-Mechatronics.
 
-The big advantages of the OpenSC-GUI are:
+The big advantages of the OpenSC are:
 * cross-platform
 * open-source
 * works for a big variety of smart-cards
 
-For more informations visit our [WIKI](https://github.com/tis-innovation-park/BuergerTest/wiki) site.
+For more informations about OpenSC GUI visit our [WIKI](https://github.com/tis-innovation-park/BuergerTest/wiki) site.
