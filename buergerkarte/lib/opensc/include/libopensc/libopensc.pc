@@ -1,0 +1,11 @@
+prefix=/home/stefan/opensc/usr
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libopensc
+Description: libopensc
+Version: 0.13.0
+Libs: -L${libdir} -lopensc -lscconf
+Cflags: -I${includedir}
+

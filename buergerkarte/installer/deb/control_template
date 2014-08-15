@@ -1,0 +1,10 @@
+Package: buergerkarte
+Section: base
+Priority: optional
+Depends: pcscd, libqtgui4
+Version: 1.0a 
+Maintainer: Andreas Kofler <info@kms-mechatronics.net>
+Architecture: i386
+Installed-Size: 10
+License: GPL-3
+Description: A GUI application based on OpenSC used to manage the PIN/PUK on smart cards for the Autonomous Province of Bolzano, South Tyrol Italy

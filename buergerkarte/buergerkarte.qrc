@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>icons/provinz_wappen.png</file>
+        <file>icons/provinz_wappen.jpg</file>
+        <file>icons/provinz_wappen.svg</file>
+    </qresource>
+</RCC>
