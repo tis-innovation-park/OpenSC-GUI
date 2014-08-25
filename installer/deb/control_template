@@ -1,7 +1,7 @@
 Package: buergerkarte
 Section: base
 Priority: optional
-Depends: pcscd, libqtgui4
+Depends: pcscd, libqtgui4, sni-qt
 Version: 1.0a 
 Maintainer: Andreas Kofler <info@kms-mechatronics.net>
 Architecture: i386
