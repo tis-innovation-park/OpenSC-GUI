@@ -14,14 +14,19 @@ d=$(date "+%Y.%m.%d-%H.%M")
 
 version="1.0a-$d"
 mkdir -p packages/buergerkarte/usr/bin
+mkdir -p packages/buergerkarte/usr/share/icons/
+mkdir -p packages/buergerkarte/usr/share/applications/
 mkdir -p packages/buergerkarte/DEBIAN
+
 cp control_template packages/control
 echo "Version: $version" >> packages/control
 
 cp ../../build/src/buergerkarte packages/buergerkarte/usr/bin
+cp ../../icons/provinz_wappen.png packages/buergerkarte/usr/share/icons/
+cp buergerkarte.desktop packages/buergerkarte/usr/share/applications/
 cp packages/control packages/buergerkarte/DEBIAN
+  
 chown root.root packages/buergerkarte/usr/bin/buergerkarte
-
 
 cd packages
 rm buergerkarte*.deb
