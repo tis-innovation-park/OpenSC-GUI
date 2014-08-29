@@ -502,7 +502,7 @@ void MainWidget::confirmNewPinTextChanged( const QString& text ) {
 }
 
 void MainWidget::systemTrayActivated(QSystemTrayIcon::ActivationReason reason) {
-  if( reason == QSystemTrayIcon::DoubleClick ) {
+  if( reason == QSystemTrayIcon::Trigger ) {
     this->activateWindow();
     showNormal();
   }
