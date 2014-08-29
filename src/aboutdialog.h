@@ -15,7 +15,7 @@ class AboutDialog : public QDialog {
   private:
     Ui_AboutDialog _ui;
     
-  public slots:
+  public slots:    
     void creditsButtonPressed();
     void licenseButtonPressed();
   

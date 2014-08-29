@@ -95,6 +95,7 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
   this->setFixedSize(_logosize.width() + 100, _logosize.height() + 300);
 }
 
+
 MainWidget::~MainWidget() {
   logger().setLogWidget( 0 );
   _scThread->quit();
@@ -104,8 +105,10 @@ MainWidget::~MainWidget() {
   delete _logo;
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// protected  //////////////////////////////////////
+
 
 //Catches change Events, f.e. the application will be minimized to tray when the user minimzes the mainwindow
 void MainWidget::changeEvent(QEvent *event ) {
@@ -116,6 +119,7 @@ void MainWidget::changeEvent(QEvent *event ) {
     }
   }
 }
+
 
 //Catches close Events so that the application will be minimized to tray when the user closes the mainwindow
 void MainWidget::closeEvent(QCloseEvent *event) {
@@ -129,11 +133,13 @@ void MainWidget::closeEvent(QCloseEvent *event) {
   }
 }
 
+
 //Catches hide events to disable the minimize action in the trayIcon menu
 void MainWidget::hideEvent(QHideEvent *event) {
   _minimizeAction->setEnabled(false);
   QWidget::hideEvent(event);
 }
+
 
 //Catches hide events to enable the minimize action in the trayIcon menu
 void MainWidget::showEvent(QShowEvent* event) {
@@ -154,7 +160,7 @@ void MainWidget::setupTrayIcon() {
   _openAction = new QAction(tr("&Open..."), this);
   connect(_openAction, SIGNAL(triggered()), this, SLOT(openActionTriggered()));
   _aboutAction = new QAction(tr("&About..."), this);
-  connect(_aboutAction, SIGNAL(triggered()), _aboutDialog, SLOT(exec())); 
+  connect(_aboutAction, SIGNAL(triggered()), this, SLOT(openAboutDialogTriggered())); 
   _quitAction = new QAction(tr("&Quit"), this);
   connect(_quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
   _enableDebugViewAction = new QAction(tr("&Enable Debug View"), this);
@@ -182,6 +188,7 @@ void MainWidget::setupTrayIcon() {
   connect( _trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(systemTrayActivated(QSystemTrayIcon::ActivationReason)));
 }
 
+
 //Enables/Disables the button to change/unblock the pin according to the pin input LineEdits
 void MainWidget::updatePinChangeButtonState() {
   if( (_ui.currentPasswordLineEdit->text() == "" && !_pinBlocked) || 
@@ -201,6 +208,7 @@ void MainWidget::updatePinChangeButtonState() {
   }
 }
 
+
 //Returns true if the given pin is too short and the given pinInfo valid, otherwise false
 bool MainWidget::pinTooShort(const QString& pin, const CardControlHandler::Pkcs15PinInfo& pinInfo) {
   if( !pinInfo.isValid )
@@ -209,6 +217,7 @@ bool MainWidget::pinTooShort(const QString& pin, const CardControlHandler::Pkcs1
   return pin.size() < _pinInfo.minLength; 
 }
 
+
 //Returns true if the given pin is too long and the given pinInfo valid, otherwise false
 bool MainWidget::pinTooLong(const QString& pin, const CardControlHandler::Pkcs15PinInfo& pinInfo) {
   if( !pinInfo.isValid )
@@ -216,6 +225,7 @@ bool MainWidget::pinTooLong(const QString& pin, const CardControlHandler::Pkcs15
   
   return pin.size() > _pinInfo.maxLength; 
 }
+
 
 void MainWidget::resetPersonalData() {
   memset( &_personalData, 0, sizeof(CardControlHandler::PersonalData));
@@ -228,13 +238,16 @@ void MainWidget::resetSerialData() {
   updateCardInformation();
 }
 
+
 void MainWidget::resetX509CertificationData() {
   memset( &_x509Data, 0 , sizeof(X509CertificateHandler::X509CertificateData) );
   updateX509CertificateInformation();
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// slots  ////////////////////////////////////////
+
 
 void MainWidget::aboutDialogActionTriggered() {
   QString aboutInfo = QString(tr("Software Version: %1\nCompile Date: %2 %3\nUsing: %4")).arg(BUERGERKATRE_SW_VERSION).arg(__DATE__).arg(__TIME__).arg(PACKAGE_STRING);
@@ -319,12 +332,14 @@ void MainWidget::cardReaderWasConnected(sc_reader_t scReader) {
   _trayIcon->showMessage(QString(tr("Card Reader Connected")), aboutInfo, QSystemTrayIcon::Information, 2000);
 }
 
+
 //This slot will be called when a smart card was connected, and displays a message to inform the user
 void MainWidget::smartCardWasConnected(sc_card_t scCard) {
   QString aboutInfo = QString(tr("Smart Card was inserted:\n Card: %1")).arg(scCard.name);
   _trayIcon->showMessage(QString(tr("Smart Card Inserted")), aboutInfo, QSystemTrayIcon::Information, 2000);
   _ui.passwordWidget->setEnabled( true );
 }
+
 
 //This slot will be called when the current smart card reader was removed, and displays a message to inform the user
 void MainWidget::cardReaderWasRemoved() {
@@ -343,6 +358,7 @@ void MainWidget::cardReaderWasRemoved() {
   resetX509CertificationData();
 }
 
+
 //This slot will be called when the current smart card was connected, and displays a message to inform the user
 void MainWidget::smartCardWasRemoved(){
   QString aboutInfo = QString(tr("Smart Card was removed!"));
@@ -360,6 +376,7 @@ void MainWidget::smartCardWasRemoved(){
   resetX509CertificationData();
 }
 
+
 //This slot is called when the pin infomation is gathered after inserting a card   
 void MainWidget::pkcs15PinInfoWasGathered(sc_pkcs15_auth_info_t pinInfo) {
   _pinInfo.maxLength = pinInfo.attrs.pin.max_length;
@@ -370,6 +387,7 @@ void MainWidget::pkcs15PinInfoWasGathered(sc_pkcs15_auth_info_t pinInfo) {
   _ui.newPinLabel->setText( tr(DEFAULT_TEXT_INSERT_NEW_PIN) + QString(tr("[Min:%1  Max:%2]").arg(_pinInfo.minLength).arg(_pinInfo.maxLength) ) );
   _ui.confirmPinLabel->setText( tr(DEFAULT_TEXT_CONFIRM_NEW_PIN) + QString(tr("[Min:%1  Max:%2]").arg(_pinInfo.minLength).arg(_pinInfo.maxLength)) );
 }
+
 
 //This slot will be called when a pin change request has been finished, and in case of an error it contains the relevant error context    
 void MainWidget::pksc15PinChangeDone(Error err) {
@@ -388,6 +406,7 @@ void MainWidget::pksc15PinChangeDone(Error err) {
   _ui.confirmPasswordLineEdit->clear();
 }
 
+
 //This slot will be called when a pin unblock request has been finished, and in case of an error it contains the relevant error context    
 void MainWidget::pksc15PinUnblockDone(Error err) {
   if( err.hasError() ) { 
@@ -405,10 +424,12 @@ void MainWidget::pksc15PinUnblockDone(Error err) {
   _ui.confirmPasswordLineEdit->clear();
 }
 
+
 void MainWidget::personalDataGathered(CardControlHandler::PersonalData personalData) {
   memcpy( &_personalData, &personalData, sizeof(personalData) );
   updateCardInformation();
 }
+
 
 void MainWidget::serialDataGathered(CardControlHandler::SerialData serialData) {
   memcpy( &_serialData, &serialData, sizeof( serialData) );
@@ -441,12 +462,14 @@ void MainWidget::currentPinEditingFinished() {
   }
 }
 
+
 void MainWidget::currentPinTextChanged( const QString& text ) {
   updatePinChangeButtonState();
   QString oldPin = _ui.currentPasswordLineEdit->text();
   if( oldPin == "" || ( !pinTooShort(oldPin, _pinInfo) && !pinTooLong(oldPin, _pinInfo) ))
     _ui.currentPinInfoLabel->setText("");
 }
+
 
 void MainWidget::newPinEditingFinished() {
   updatePinChangeButtonState();
@@ -462,6 +485,7 @@ void MainWidget::newPinEditingFinished() {
   }
 }
 
+
 void MainWidget::newPinTextChanged( const QString& text ) {
   updatePinChangeButtonState();
   QString newPin = _ui.newPasswordLineEdit->text();
@@ -474,6 +498,7 @@ void MainWidget::newPinTextChanged( const QString& text ) {
       _ui.confirmPinInfoLabel->setText("Does not match new pin");
   }
 }
+
 
 void MainWidget::confirmNewPinEditingFinished() {
   updatePinChangeButtonState();
@@ -491,6 +516,7 @@ void MainWidget::confirmNewPinEditingFinished() {
   }
 }
 
+
 void MainWidget::confirmNewPinTextChanged( const QString& text ) {
   updatePinChangeButtonState();
   QString confirmPin = _ui.confirmPasswordLineEdit->text();
@@ -501,6 +527,7 @@ void MainWidget::confirmNewPinTextChanged( const QString& text ) {
   }
 }
 
+
 void MainWidget::systemTrayActivated(QSystemTrayIcon::ActivationReason reason) {
   if( reason == QSystemTrayIcon::Trigger ) {
     this->activateWindow();
@@ -508,10 +535,28 @@ void MainWidget::systemTrayActivated(QSystemTrayIcon::ActivationReason reason) {
   }
 }
 
+
 void MainWidget::openActionTriggered() {
   this->activateWindow();
   showNormal();
 }
+
+
+void MainWidget::openAboutDialogTriggered(){
+  if ( _aboutDialog->isVisible() )
+    _aboutDialog->hide();
+  else 
+    _aboutDialog->exec();
+}
+
+
+void MainWidget::openDebugDialogTriggered(){
+  if ( _textEdit->isVisible() )
+    _textEdit->hide();
+  else 
+    _textEdit->show();
+}
+
 
 
 void MainWidget::enableDebugViewActionTriggered(){
@@ -593,6 +638,7 @@ void MainWidget::updateCardInformation() {
       _ui.addressLineEdit->setText("Unknown");
   }
 }
+
 
 void MainWidget::updateX509CertificateInformation() {
   if( !_x509Data.isValid ) {

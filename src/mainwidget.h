@@ -141,6 +141,8 @@ class MainWidget:public QMainWindow{
     //---- Slots to show the mainwindow if it is in hidden or deactivated state -----
     void systemTrayActivated(QSystemTrayIcon::ActivationReason reason);
     void openActionTriggered();
+    void openAboutDialogTriggered();
+    void openDebugDialogTriggered();
     void enableDebugViewActionTriggered();
     
     void updateCardInformation();
