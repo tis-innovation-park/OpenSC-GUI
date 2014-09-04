@@ -40,7 +40,12 @@ add_executable (${PROJECT_NAME} ${SRCS} ${HEADERS_MOC} ${FORMS_HEADERS} ${RESOUR
 if( WIN32 ) 
   set(LIBOPENSC ${LIB_DIR}/opensc/lib/windows/libopensc.a)
   target_link_libraries(${PROJECT_NAME} ${QT_QTMAIN_LIBRARY} ${QT_LIBRARIES} ${LIBOPENSC} ${ZLIB_LIBRARIES} ${OPENSSL_LIBRARIES} ${CMAKE_DL_LIBS} -llcms -llzma -Wl,-subsystem,windows )  
-  #target_link_libraries(${PROJECT_NAME} ${QT_QTMAIN_LIBRARY} ${QT_LIBRARIES} ${LIBOPENSC} ${ZLIB_LIBRARIES} ${OPENSSL_LIBRARIES} ${CMAKE_DL_LIBS} -llcms -llzma)  
+  #target_link_libraries(${PROJECT_NAME} ${QT_QTMAIN_LIBRARY} ${QT_LIBRARIES} /tmp/libpkcs15init.a ${LIBOPENSC} ${ZLIB_LIBRARIES} ${OPENSSL_LIBRARIES} ${CMAKE_DL_LIBS} -llcms -llzma)  
+elseif( APPLE )
+  set(LIBOPENSC ${LIB_DIR}/opensc/lib/mac_osx/libopensc.dylib)
+  target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} ${LIBOPENSC}  ${ZLIB_LIBRARIES} ${OPENSSL_LIBRARIES} ${CMAKE_DL_LIBS} )
+
+  #set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 else()
   set(LIBOPENSC ${LIB_DIR}/opensc/lib/linux/libopensc.a)
   target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} ${LIBOPENSC} ${ZLIB_LIBRARIES} ${OPENSSL_LIBRARIES} ${CMAKE_DL_LIBS} )
