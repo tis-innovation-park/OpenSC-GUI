@@ -34,7 +34,7 @@ QT4_ADD_RESOURCES( RESOURCES_RCC ${RESOURCES})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 
 #Creates executable from sources, moc headers (Qt), forms headers (Qt) and resources (Qt)
-add_executable (${PROJECT_NAME} ${SRCS} ${HEADERS_MOC} ${FORMS_HEADERS} ${RESOURCES_RCC} )
+add_executable (${PROJECT_NAME} ${SRCS} ${HEADERS_MOC} ${FORMS_HEADERS} ${RESOURCES_RCC} ../buergerkarte.rc )
 
 #Linking with special arguments for windows or linux platform
 if( WIN32 ) 

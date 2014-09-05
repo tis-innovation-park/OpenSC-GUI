@@ -4,6 +4,7 @@
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPPRODUCTICON" Value="provinz_wappen.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="KMS Mechatronics"/>
     <ROW Property="ProductCode" Value="1033:{03E813BD-B677-4AE7-8D2E-68A5D516CB22} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
@@ -19,6 +20,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="Buergerkarte_Dir" Directory_Parent="KMSMechatronics_Dir" DefaultDir="BUERGE~1|Buergerkarte"/>
+    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="KMSMechatronics_Dir" Directory_Parent="ProgramFilesFolder" DefaultDir="KMSMEC~1|KMS Mechatronics"/>
     <ROW Directory="ProgramFilesFolder" Directory_Parent="TARGETDIR" DefaultDir="PROGRA~1|ProgramFilesFolder" IsPseudoRoot="1"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
@@ -103,6 +105,9 @@
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="provinz_wappen.exe" SourcePath="..\icons\provinz_wappen.ico" Index="0"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
@@ -124,6 +129,7 @@
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="buergerkarte" Directory_="DesktopFolder" Name="BUERGE~1|buergerkarte" Component_="buergerkarte.exe" Target="[#buergerkarte.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="buergerkarte_1" Directory_="SHORTCUTDIR" Name="BUERGE~1|buergerkarte" Component_="buergerkarte.exe" Target="[#buergerkarte.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Buergerkarte_Dir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
