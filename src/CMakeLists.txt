@@ -34,22 +34,24 @@ QT4_ADD_RESOURCES( RESOURCES_RCC ${RESOURCES})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 
 #Creates executable from sources, moc headers (Qt), forms headers (Qt) and resources (Qt)
-add_executable (${PROJECT_NAME} ${SRCS} ${HEADERS_MOC} ${FORMS_HEADERS} ${RESOURCES_RCC} )
+add_executable (${PROJECT_NAME} ${SRCS} ${HEADERS_MOC} ${FORMS_HEADERS} ${RESOURCES_RCC} ../buergerkarte.rc )
 
 #Linking with special arguments for windows or linux platform
 if( WIN32 ) 
   set(LIBOPENSC ${LIB_DIR}/opensc/lib/windows/libopensc.a)
   target_link_libraries(${PROJECT_NAME} ${QT_QTMAIN_LIBRARY} ${QT_LIBRARIES} ${LIBOPENSC} ${ZLIB_LIBRARIES} ${OPENSSL_LIBRARIES} ${CMAKE_DL_LIBS} -llcms -llzma -Wl,-subsystem,windows )  
-  #target_link_libraries(${PROJECT_NAME} ${QT_QTMAIN_LIBRARY} ${QT_LIBRARIES} /tmp/libpkcs15init.a ${LIBOPENSC} ${ZLIB_LIBRARIES} ${OPENSSL_LIBRARIES} ${CMAKE_DL_LIBS} -llcms -llzma)  
 elseif( APPLE )
   set(LIBOPENSC ${LIB_DIR}/opensc/lib/mac_osx/libopensc.3.dylib)
   #set(LIBOPENSC ./libopensc.3.dylib)
   target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} ${LIBOPENSC}  ${ZLIB_LIBRARIES} ${OPENSSL_LIBRARIES} ${CMAKE_DL_LIBS} )
-
-  #set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 else()
   set(LIBOPENSC ${LIB_DIR}/opensc/lib/linux/libopensc.a)
   target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} ${LIBOPENSC} ${ZLIB_LIBRARIES} ${OPENSSL_LIBRARIES} ${CMAKE_DL_LIBS} )
-
   set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
+  ADD_CUSTOM_COMMAND (
+    TARGET ${PROJECT_NAME} POST_BUILD 
+    COMMAND lupdate -silent -I ../src ../src -ts ../translations//${PROJECT_NAME}.ts
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+  )
+  
 endif()
