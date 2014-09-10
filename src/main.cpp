@@ -10,15 +10,14 @@ int main( int argc, char ** argv ){
   qRegisterMetaType<CardControlHandler::SerialData>("CardControlHandler::SerialData");
   qRegisterMetaType<X509CertificateHandler::X509CertificateData>("X509CertificateHandler::X509CertificateData");
   
-  QApplication a( argc, argv );  
-//   QSharedMemory mem("buergerkarteapp");
-//   if(!mem.create(1)) {
-//     QMessageBox::critical(0,"Instance detected!","Application is already running!\nApplication terminating...","Ok");
-//     exit(0);
-//   }
+  QApplication a( argc, argv );
+  bool hideMainWin = false;
+  if ( argc == 2 && string(argv[1]) == "startHidden" )
+    hideMainWin = true;
   
   MainWidget* mw = new MainWidget();
-  mw->show();
+  if ( !hideMainWin )
+    mw->show();
   
   return a.exec();
 }

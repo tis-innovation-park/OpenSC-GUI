@@ -93,6 +93,7 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
   _ui.changePasswordButton->setText( tr("&Change password") );
   
   this->setFixedSize(_logosize.width() + 100, _logosize.height() + 300);
+  
 }
 
 
