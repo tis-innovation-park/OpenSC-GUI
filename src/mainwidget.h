@@ -11,6 +11,7 @@
 #include <QThread>
 #include <QCloseEvent>
 #include <QDateTimeEdit>
+#include <QProcess>
 
 #include "config.h"
 #include "pukdialog.h"
@@ -87,13 +88,16 @@ class MainWidget:public QMainWindow{
     QAction *_openAction;             //Action to open the mainwindoow
     QAction *_aboutAction;            //Action to request version information
     QAction *_minimizeAction;         //Action to minimize the mainwindow to the tray
-    QAction *_quitAction;             //Action to quit the application
-    QAction *_enableDebugViewAction;  //Action to quit the application
+    QAction *_quitAction;
+    QAction *_enableDebugViewAction;  
+    QAction *_updateFirefoxAction;  
     
     // Status
     StatusBar *_statusBar;      //Bar showing brief status information about the card reader / smart card
     QTextEdit *_textEdit;       //A Textfield to show Debug information
     QSize _logosize;
+    
+    QProcess *_firefoxProcess;
    
   public slots:
     //This slot is called when the user clicks on the about action in the tray icon menu, a message showing version infos will be displayed
@@ -144,9 +148,14 @@ class MainWidget:public QMainWindow{
     void openAboutDialogTriggered();
     void openDebugDialogTriggered();
     void enableDebugViewActionTriggered();
+    void updateFirefoxActionTriggered();
     
     void updateCardInformation();
     void updateX509CertificateInformation();
+    
+    void firefoxUpdateStarted();
+    void firefoxUpdateError(enum QProcess::ProcessError);
+    
 };
 
 #endif

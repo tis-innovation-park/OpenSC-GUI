@@ -10,6 +10,8 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
   _ui.changePasswordButton->setText(tr(DEFAULT_TEXT_CHANGE_PIN_BUTTON));
   _ui.changePasswordButton->setEnabled( false );  
   
+  _firefoxProcess = 0;
+  
   _aboutDialog = new AboutDialog(this);
   _aboutDialog->close();
   
@@ -104,6 +106,8 @@ MainWidget::~MainWidget() {
   delete _scThread;
   delete _scControl;
   delete _logo;
+  if ( _firefoxProcess )
+    delete _firefoxProcess;
 }
 
 
@@ -166,6 +170,8 @@ void MainWidget::setupTrayIcon() {
   connect(_quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
   _enableDebugViewAction = new QAction(tr("&Enable Debug View"), this);
   connect(_enableDebugViewAction, SIGNAL(triggered()), this, SLOT(enableDebugViewActionTriggered()));
+  _updateFirefoxAction = new QAction(tr("&Update Firefox"), this);
+  connect(_updateFirefoxAction, SIGNAL(triggered()), this, SLOT(updateFirefoxActionTriggered()));
   
   //Setting up tray icon context menu
   _trayIconMenu = new QMenu(this);
@@ -174,6 +180,7 @@ void MainWidget::setupTrayIcon() {
   _trayIconMenu->addSeparator();
   _trayIconMenu->addAction(_minimizeAction);
   _trayIconMenu->addSeparator();
+  _trayIconMenu->addAction(_updateFirefoxAction);
   _trayIconMenu->addAction(_enableDebugViewAction);
   _trayIconMenu->addAction(_quitAction);
 
@@ -571,6 +578,21 @@ void MainWidget::enableDebugViewActionTriggered(){
 }
 
 
+void MainWidget::updateFirefoxActionTriggered(){
+  if ( !_firefoxProcess ) {
+    _firefoxProcess = new QProcess();
+    connect(_firefoxProcess, SIGNAL(started()), this, SLOT(firefoxUpdateStarted()) );
+    connect(_firefoxProcess, SIGNAL(error(QProcess::ProcessError)), this, SLOT(firefoxUpdateError(QProcess::ProcessError)) );
+  }
+  _firefoxProcess->setWorkingDirectory( qApp->applicationDirPath() );
+  QString command = QString("wscript install_firefox_xpi.vbs");
+  logger().log("starting firefox updater command: %s\n", command.toStdString().c_str() );
+//   QMessageBox::information(this, "", command );
+  _firefoxProcess->start(command);
+}
+
+
+
 void MainWidget::updateCardInformation() {
   if( !_serialData.isValid ) {
     _ui.serialNumberLineEdit->clear();
@@ -676,3 +698,19 @@ void MainWidget::updateX509CertificateInformation() {
   }
 }
 
+
+void MainWidget::firefoxUpdateStarted(){
+//   QMessageBox::information(this, "", QString("started") );
+}
+
+
+void MainWidget::firefoxUpdateError(enum QProcess::ProcessError err){
+  switch (err){
+    case QProcess::FailedToStart: QMessageBox::critical(this, tr("Error"), tr("Unable to start firefox, please check your installation")); break;
+    case QProcess::Crashed: QMessageBox::critical(this, tr("Error"), tr("Firefox has crashed")); break;
+    case QProcess::Timedout: QMessageBox::critical(this, tr("Error"), tr("Timeout starting firefox")); break;
+    case QProcess::WriteError: QMessageBox::critical(this, tr("Error"), tr("I/O error has occured starting firefox")); break;
+    case QProcess::ReadError: QMessageBox::critical(this, tr("Error"), tr("I/O error has occured starting firefox")); break;
+    case QProcess::UnknownError: QMessageBox::critical(this, tr("Error"), tr("Unable to start firefox, please check your installation")); break;
+  }
+}

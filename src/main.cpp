@@ -13,9 +13,9 @@ int main( int argc, char ** argv ){
   qRegisterMetaType<X509CertificateHandler::X509CertificateData>("X509CertificateHandler::X509CertificateData");
   
 
-  QSharedMemory shared("6d6f02f0-ed13-4132-b21e-be746ed4a623");
-  if( !shared.create( 512, QSharedMemory::ReadWrite) )
-    exit(0);
+//   QSharedMemory shared("6d6f02f0-ed13-4132-b21e-be746ed4a623");
+//   if( !shared.create( 512, QSharedMemory::ReadWrite) )
+//     exit(0);
 
   QApplication a( argc, argv );
   bool hideMainWin = false;
