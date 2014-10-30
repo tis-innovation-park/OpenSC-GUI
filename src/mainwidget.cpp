@@ -585,12 +585,15 @@ void MainWidget::updateFirefoxActionTriggered(){
     connect(_firefoxProcess, SIGNAL(error(QProcess::ProcessError)), this, SLOT(firefoxUpdateError(QProcess::ProcessError)) );
   }
   _firefoxProcess->setWorkingDirectory( qApp->applicationDirPath() );
+#ifdef WIN32
   QString command = QString("wscript install_firefox_xpi.vbs");
+#else
+  QString command = QString("firefox /usr/local/share/buergerkarte/OpenSC_PKCS11_Module_V1.2.xpi");
+#endif
   logger().log("starting firefox updater command: %s\n", command.toStdString().c_str() );
 //   QMessageBox::information(this, "", command );
   _firefoxProcess->start(command);
 }
-
 
 
 void MainWidget::updateCardInformation() {
@@ -700,7 +703,6 @@ void MainWidget::updateX509CertificateInformation() {
 
 
 void MainWidget::firefoxUpdateStarted(){
-//   QMessageBox::information(this, "", QString("started") );
 }
 
 
