@@ -16,6 +16,9 @@ int main( int argc, char ** argv ){
 //   QSharedMemory shared("6d6f02f0-ed13-4132-b21e-be746ed4a623");
 //   if( !shared.create( 512, QSharedMemory::ReadWrite) )
 //     exit(0);
+#ifdef Q_OS_LINUX
+  printf("linux \n");
+#endif
 
   QApplication a( argc, argv );
   bool hideMainWin = false;

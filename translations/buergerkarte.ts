@@ -497,12 +497,12 @@ Using: %4</source>
     <message>
         <location filename="../src/mainwidget.cpp" line="403"/>
         <location filename="../src/mainwidget.cpp" line="421"/>
-        <location filename="../src/mainwidget.cpp" line="711"/>
-        <location filename="../src/mainwidget.cpp" line="712"/>
         <location filename="../src/mainwidget.cpp" line="713"/>
         <location filename="../src/mainwidget.cpp" line="714"/>
         <location filename="../src/mainwidget.cpp" line="715"/>
         <location filename="../src/mainwidget.cpp" line="716"/>
+        <location filename="../src/mainwidget.cpp" line="717"/>
+        <location filename="../src/mainwidget.cpp" line="718"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -561,32 +561,32 @@ Using: %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="681"/>
-        <location filename="../src/mainwidget.cpp" line="687"/>
-        <location filename="../src/mainwidget.cpp" line="693"/>
-        <location filename="../src/mainwidget.cpp" line="699"/>
+        <location filename="../src/mainwidget.cpp" line="683"/>
+        <location filename="../src/mainwidget.cpp" line="689"/>
+        <location filename="../src/mainwidget.cpp" line="695"/>
+        <location filename="../src/mainwidget.cpp" line="701"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="711"/>
-        <location filename="../src/mainwidget.cpp" line="716"/>
+        <location filename="../src/mainwidget.cpp" line="713"/>
+        <location filename="../src/mainwidget.cpp" line="718"/>
         <source>Unable to start firefox, please check your installation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="712"/>
+        <location filename="../src/mainwidget.cpp" line="714"/>
         <source>Firefox has crashed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="713"/>
+        <location filename="../src/mainwidget.cpp" line="715"/>
         <source>Timeout starting firefox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="714"/>
-        <location filename="../src/mainwidget.cpp" line="715"/>
+        <location filename="../src/mainwidget.cpp" line="716"/>
+        <location filename="../src/mainwidget.cpp" line="717"/>
         <source>I/O error has occured starting firefox</source>
         <translation type="unfinished"></translation>
     </message>
