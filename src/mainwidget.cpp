@@ -587,8 +587,10 @@ void MainWidget::updateFirefoxActionTriggered(){
   _firefoxProcess->setWorkingDirectory( qApp->applicationDirPath() );
 #ifdef WIN32
   QString command = QString("wscript install_firefox_xpi.vbs");
-#else
+#elsif Q_OS_LINUX 
   QString command = QString("firefox /usr/local/share/buergerkarte/OpenSC_PKCS11_Module_V1.2.xpi");
+#else
+  QString command = QString("/Applications/Firefox.app/Contents/MacOS/firefox-bin /Applications/Buergerkarte.app/Contents/MacOS/OpenSC_PKCS11_Module_V1.2.xpi");
 #endif
   logger().log("starting firefox updater command: %s\n", command.toStdString().c_str() );
 //   QMessageBox::information(this, "", command );
