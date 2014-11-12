@@ -47,8 +47,9 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="OpenSC_PKCS11_Module_V1.2.xpi" Component_="firefox_pkcs11_module.xpi" FileName="OPENSC~1.XPI|OpenSC_PKCS11_Module_V1.2.xpi" Attributes="0" SourcePath="..\OpenSC_PKCS11_Module_V1.2.xpi" SelfReg="false" NextFile="opensc20141107_125310win32.msi"/>
     <ROW File="OpenSC_Reg32.reg" Component_="firefox_pkcs11_module.xpi" FileName="OPENSC~1.REG|OpenSC_Reg32.reg" Attributes="0" SourcePath="OpenSC_Reg32.reg" SelfReg="false" NextFile="OpenSC_Reg64.reg"/>
-    <ROW File="OpenSC_Reg64.reg" Component_="firefox_pkcs11_module.xpi" FileName="OPENSC~2.REG|OpenSC_Reg64.reg" Attributes="0" SourcePath="OpenSC_Reg64.reg" SelfReg="false"/>
+    <ROW File="OpenSC_Reg64.reg" Component_="firefox_pkcs11_module.xpi" FileName="OPENSC~2.REG|OpenSC_Reg64.reg" Attributes="0" SourcePath="OpenSC_Reg64.reg" SelfReg="false" NextFile="install.bat"/>
     <ROW File="buergerkarte.exe" Component_="buergerkarte.exe" FileName="BUERGE~1.EXE|buergerkarte.exe" Attributes="0" SourcePath="..\..\build_win32\src\buergerkarte.exe" SelfReg="false" NextFile="install_firefox_xpi.vbs" DigSign="true"/>
+    <ROW File="install.bat" Component_="firefox_pkcs11_module.xpi" FileName="install.bat" Attributes="0" SourcePath="install.bat" SelfReg="false"/>
     <ROW File="install_firefox_xpi.vbs" Component_="firefox_pkcs11_module.xpi" FileName="INSTAL~1.VBS|install_firefox_xpi.vbs" Attributes="0" SourcePath="install_firefox_xpi.vbs" SelfReg="false" NextFile="OpenSC_PKCS11_Module_V1.2.xpi"/>
     <ROW File="opensc20141107_125310win32.msi" Component_="firefox_pkcs11_module.xpi" FileName="OPENSC~1.MSI|opensc-2014-11-07_12-53-10-win32.msi" Attributes="0" SourcePath="opensc-2014-11-07_12-53-10-win32.msi" SelfReg="false" NextFile="OpenSC_Reg32.reg"/>
   </COMPONENT>
@@ -111,7 +112,7 @@
     <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
     <ROW Action="AI_FinishActions" Type="1" Source="aicustact.dll" Target="RunAllExitActions"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
-    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#opensc20141107_125310win32.msi]"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#install.bat]"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
