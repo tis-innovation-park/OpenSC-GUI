@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="11.4.1" version="11.4.1" Modules="simple" RootPath="." Language="en" Id="{FAD0AD4D-7532-4A39-B323-5BC7FA0BFC63}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="11.4.1" version="11.7" Modules="simple" RootPath="." Language="en" Id="{FAD0AD4D-7532-4A39-B323-5BC7FA0BFC63}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="ALLUSERS" Value="1"/>
@@ -22,39 +22,112 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="Buergerkarte_1_Dir" Directory_Parent="KMSMechatronics_1_Dir" DefaultDir="BUERGE~1|Buergerkarte"/>
     <ROW Directory="Buergerkarte_Dir" Directory_Parent="KMSMechatronics_Dir" DefaultDir="BUERGE~1|Buergerkarte"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
+    <ROW Directory="KMSMechatronics_1_Dir" Directory_Parent="ProgramFiles64Folder" DefaultDir="KMSMEC~1|KMS Mechatronics"/>
     <ROW Directory="KMSMechatronics_Dir" Directory_Parent="ProgramFilesFolder" DefaultDir="KMSMEC~1|KMS Mechatronics"/>
+    <ROW Directory="PKCS11Spy_1_Dir" Directory_Parent="Buergerkarte_1_Dir" DefaultDir="PKCS11~1|PKCS11-Spy"/>
+    <ROW Directory="PKCS11Spy_Dir" Directory_Parent="Buergerkarte_Dir" DefaultDir="PKCS11~1|PKCS11-Spy"/>
+    <ROW Directory="ProgramFiles64Folder" Directory_Parent="TARGETDIR" DefaultDir="PROGRA~2|ProgramFiles64Folder" IsPseudoRoot="1"/>
     <ROW Directory="ProgramFilesFolder" Directory_Parent="TARGETDIR" DefaultDir="PROGRA~1|ProgramFilesFolder" IsPseudoRoot="1"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="StartupFolder" Directory_Parent="TARGETDIR" DefaultDir="STARTU~1|StartupFolder" IsPseudoRoot="1"/>
     <ROW Directory="System32_Dir" Directory_Parent="WindowsFolder" DefaultDir="System32"/>
+    <ROW Directory="System64Folder" Directory_Parent="TARGETDIR" DefaultDir="SYSTEM~1|System64Folder" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
     <ROW Directory="WindowsFolder" Directory_Parent="TARGETDIR" DefaultDir="WINDOW~1|WindowsFolder" IsPseudoRoot="1"/>
+    <ROW Directory="profiles_Dir" Directory_Parent="APPDIR" DefaultDir="profiles"/>
+    <ROW Directory="tools_Dir" Directory_Parent="APPDIR" DefaultDir="tools"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="Buergerkarte" ComponentId="{E6FB4EEA-1A35-4A28-BEA7-38C8A39DEDF1}" Directory_="Buergerkarte_Dir" Attributes="0"/>
+    <ROW Component="ConfigFile" ComponentId="{EE52A1AF-DA13-4F63-BD1B-DFA4F5649A68}" Directory_="APPDIR" Attributes="4" KeyPath="ConfigFile"/>
+    <ROW Component="Module" ComponentId="{2669FFCC-B134-4CE2-9D00-49E646131F7A}" Directory_="APPDIR" Attributes="4" KeyPath="Module"/>
+    <ROW Component="OpenSC" ComponentId="{BC46A918-7365-46D9-952D-27AE1497B914}" Directory_="APPDIR" Attributes="4" KeyPath="OpenSC"/>
+    <ROW Component="Output" ComponentId="{88242ACB-8378-4A32-A340-B2DF4351F8E9}" Directory_="APPDIR" Attributes="4" KeyPath="Output"/>
+    <ROW Component="PKCS11Spy" ComponentId="{37592D57-2659-4992-B7DF-3E8B3E5DAD19}" Directory_="APPDIR" Attributes="4" KeyPath="PKCS11Spy"/>
     <ROW Component="ProductInformation" ComponentId="{7253450D-6711-4B7F-9B7D-F2AF70EAEAF4}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="ProductName" ComponentId="{04377428-530D-4D1D-9CE2-E500CFFF0D56}" Directory_="APPDIR" Attributes="4" KeyPath="ProductName_1"/>
+    <ROW Component="ProfileDir" ComponentId="{8BB2E4A1-D365-4A76-88F2-0A394A2F7D0F}" Directory_="APPDIR" Attributes="4" KeyPath="ProfileDir"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{393E40B3-4090-4CA3-88CF-2AF257873E42}" Directory_="SHORTCUTDIR" Attributes="0"/>
-    <ROW Component="System32" ComponentId="{F9216844-0FB5-4E37-AA27-9EDC590DF78D}" Directory_="System32_Dir" Attributes="0"/>
+    <ROW Component="SmDir" ComponentId="{BACF5CEB-DAC1-4BB5-8E4B-68318625632B}" Directory_="APPDIR" Attributes="4" KeyPath="SmDir"/>
+    <ROW Component="asepcos.profile" ComponentId="{DDCDEBAD-8827-4BD9-B36B-1E5ED2EF1BCF}" Directory_="profiles_Dir" Attributes="0" KeyPath="asepcos.profile" Type="0"/>
     <ROW Component="buergerkarte.exe" ComponentId="{9C0D696F-C431-4AA2-93B1-4421DE1CC01B}" Directory_="APPDIR" Attributes="0" KeyPath="buergerkarte.exe"/>
+    <ROW Component="dnietool.exe" ComponentId="{2463ED4D-F9A5-4BAF-B189-F47A960D1DFA}" Directory_="tools_Dir" Attributes="0" KeyPath="dnietool.exe"/>
     <ROW Component="firefox_pkcs11_module.xpi" ComponentId="{DA35DD90-B742-4E3D-B4E3-7D1AAC1B01AE}" Directory_="APPDIR" Attributes="0" KeyPath="install_firefox_xpi.vbs" Type="0"/>
+    <ROW Component="installed" ComponentId="{BC66AB63-56BB-464C-9232-7CA4B733A19A}" Directory_="APPDIR" Attributes="4" KeyPath="installed"/>
+    <ROW Component="openpgptool.exe" ComponentId="{7456471B-8011-498A-B089-06EB04F1748A}" Directory_="tools_Dir" Attributes="0" KeyPath="openpgptool.exe"/>
+    <ROW Component="opensc.dll" ComponentId="{B7CFA7C5-1B04-4D01-ADF7-CD7CF9FB5F5E}" Directory_="tools_Dir" Attributes="0" KeyPath="opensc.dll"/>
+    <ROW Component="openscexplorer.exe" ComponentId="{21BE63AB-E50D-4804-8035-AD553B040E56}" Directory_="tools_Dir" Attributes="0" KeyPath="openscexplorer.exe"/>
+    <ROW Component="openscminidriver.dll" ComponentId="{EDF2C61B-AFD1-44C9-A265-C1B31DE51BFA}" Directory_="System32_Dir" Attributes="0" KeyPath="openscminidriver.dll"/>
+    <ROW Component="openscminidriver.dll_1" ComponentId="{DE7C45B3-1807-4D53-87D9-3994A42B9F7F}" Directory_="System64Folder" Attributes="256" KeyPath="openscminidriver.dll_1"/>
+    <ROW Component="openscpkcs11.dll" ComponentId="{B94DA17E-090F-4308-B4CB-D23AEF2CE68F}" Directory_="System32_Dir" Attributes="0" KeyPath="openscpkcs11.dll"/>
+    <ROW Component="openscpkcs11.dll_1" ComponentId="{16A4172B-9926-495B-9D30-06FB801F711A}" Directory_="System64Folder" Attributes="256" KeyPath="openscpkcs11.dll_1"/>
+    <ROW Component="opensctool.exe" ComponentId="{21486E87-80C4-48FA-9D9D-E348D0DC292C}" Directory_="tools_Dir" Attributes="0" KeyPath="opensctool.exe"/>
+    <ROW Component="pkcs11spy.dll" ComponentId="{FB4BCCB0-1EBC-4B61-9571-5E6522974310}" Directory_="PKCS11Spy_Dir" Attributes="0" KeyPath="pkcs11spy.dll"/>
+    <ROW Component="pkcs11spy.dll_2" ComponentId="{FF1744C4-914A-4EBE-9229-F57F7232A7FE}" Directory_="PKCS11Spy_1_Dir" Attributes="256" KeyPath="pkcs11spy.dll_2"/>
+    <ROW Component="pkcs11tool.exe" ComponentId="{9D65FB64-DDC3-4A04-800A-CC234D77D3C0}" Directory_="tools_Dir" Attributes="0" KeyPath="pkcs11tool.exe"/>
+    <ROW Component="pkcs15crypt.exe" ComponentId="{3F157233-5C6B-42E4-B78C-C404187E8570}" Directory_="tools_Dir" Attributes="0" KeyPath="pkcs15crypt.exe"/>
+    <ROW Component="pkcs15init.exe" ComponentId="{5E5D813A-974C-4D20-9F99-05F0ADCF9A59}" Directory_="tools_Dir" Attributes="0" KeyPath="pkcs15init.exe"/>
+    <ROW Component="pkcs15tool.exe" ComponentId="{99BF730C-83B4-49B1-A561-31C3EE6F10AE}" Directory_="tools_Dir" Attributes="0" KeyPath="pkcs15tool.exe"/>
+    <ROW Component="schsmtool.exe" ComponentId="{5F870A4E-ECA9-4C83-BC75-2A71AEDBE4CC}" Directory_="tools_Dir" Attributes="0" KeyPath="schsmtool.exe"/>
+    <ROW Component="smmlocal.dll" ComponentId="{9BF316FA-8C94-4427-BD60-6691BB3BB94F}" Directory_="tools_Dir" Attributes="0" KeyPath="smmlocal.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="Buergerkarte ProductInformation SHORTCUTDIR System32 buergerkarte.exe firefox_pkcs11_module.xpi"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="ConfigFile Module OpenSC Output PKCS11Spy ProductInformation ProductName ProfileDir SHORTCUTDIR SmDir asepcos.profile buergerkarte.exe dnietool.exe firefox_pkcs11_module.xpi installed openpgptool.exe opensc.dll openscexplorer.exe openscminidriver.dll openscminidriver.dll_1 openscpkcs11.dll openscpkcs11.dll_1 opensctool.exe pkcs11spy.dll pkcs11spy.dll_2 pkcs11tool.exe pkcs15crypt.exe pkcs15init.exe pkcs15tool.exe schsmtool.exe smmlocal.dll"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="OpenSC_PKCS11_Module_V1.2.xpi" Component_="firefox_pkcs11_module.xpi" FileName="OPENSC~1.XPI|OpenSC_PKCS11_Module_V1.2.xpi" Attributes="0" SourcePath="..\OpenSC_PKCS11_Module_V1.2.xpi" SelfReg="false" NextFile="opensc20141107_125310win32.msi"/>
     <ROW File="OpenSC_Reg32.reg" Component_="firefox_pkcs11_module.xpi" FileName="OPENSC~1.REG|OpenSC_Reg32.reg" Attributes="0" SourcePath="OpenSC_Reg32.reg" SelfReg="false" NextFile="OpenSC_Reg64.reg"/>
     <ROW File="OpenSC_Reg64.reg" Component_="firefox_pkcs11_module.xpi" FileName="OPENSC~2.REG|OpenSC_Reg64.reg" Attributes="0" SourcePath="OpenSC_Reg64.reg" SelfReg="false" NextFile="install.bat"/>
+    <ROW File="asepcos.profile" Component_="asepcos.profile" FileName="ASEPCO~1.PRO|asepcos.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\asepcos.profile" SelfReg="false" NextFile="epass2003.profile"/>
+    <ROW File="authentic.profile" Component_="asepcos.profile" FileName="AUTHEN~1.PRO|authentic.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\authentic.profile" SelfReg="false" NextFile="cardos.profile"/>
     <ROW File="buergerkarte.exe" Component_="buergerkarte.exe" FileName="BUERGE~1.EXE|buergerkarte.exe" Attributes="0" SourcePath="..\..\build_win32\src\buergerkarte.exe" SelfReg="false" NextFile="install_firefox_xpi.vbs" DigSign="true"/>
-    <ROW File="install.bat" Component_="firefox_pkcs11_module.xpi" FileName="install.bat" Attributes="0" SourcePath="install.bat" SelfReg="false"/>
+    <ROW File="cardos.profile" Component_="asepcos.profile" FileName="CARDOS~1.PRO|cardos.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\cardos.profile" SelfReg="false" NextFile="iasecc_admin_eid.profile"/>
+    <ROW File="dnietool.exe" Component_="dnietool.exe" FileName="DNIE-T~1.EXE|dnie-tool.exe" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\tools\dnie-tool.exe" SelfReg="false" NextFile="openpgptool.exe"/>
+    <ROW File="entersafe.profile" Component_="asepcos.profile" FileName="ENTERS~1.PRO|entersafe.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\entersafe.profile" SelfReg="false" NextFile="ias_adele_admin2.profile"/>
+    <ROW File="epass2003.profile" Component_="asepcos.profile" FileName="EPASS2~1.PRO|epass2003.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\epass2003.profile" SelfReg="false" NextFile="authentic.profile"/>
+    <ROW File="ias_adele_admin1.profile" Component_="asepcos.profile" FileName="IAS_AD~2.PRO|ias_adele_admin1.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\ias_adele_admin1.profile" SelfReg="false" NextFile="iasecc.profile"/>
+    <ROW File="ias_adele_admin2.profile" Component_="asepcos.profile" FileName="IAS_AD~1.PRO|ias_adele_admin2.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\ias_adele_admin2.profile" SelfReg="false" NextFile="ias_adele_admin1.profile"/>
+    <ROW File="ias_adele_common.profile" Component_="asepcos.profile" FileName="IAS_AD~3.PRO|ias_adele_common.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\ias_adele_common.profile" SelfReg="false" NextFile="iasecc_generic_oberthur.profile"/>
+    <ROW File="iasecc.profile" Component_="asepcos.profile" FileName="IASECC~2.PRO|iasecc.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\iasecc.profile" SelfReg="false" NextFile="ias_adele_common.profile"/>
+    <ROW File="iasecc_admin_eid.profile" Component_="asepcos.profile" FileName="IASECC~1.PRO|iasecc_admin_eid.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\iasecc_admin_eid.profile" SelfReg="false" NextFile="entersafe.profile"/>
+    <ROW File="iasecc_generic_oberthur.profile" Component_="asepcos.profile" FileName="IASECC~3.PRO|iasecc_generic_oberthur.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\iasecc_generic_oberthur.profile" SelfReg="false" NextFile="iasecc_generic_pki.profile"/>
+    <ROW File="iasecc_generic_pki.profile" Component_="asepcos.profile" FileName="IASECC~4.PRO|iasecc_generic_pki.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\iasecc_generic_pki.profile" SelfReg="false" NextFile="myeid.profile"/>
+    <ROW File="install.bat" Component_="firefox_pkcs11_module.xpi" FileName="install.bat" Attributes="0" SourcePath="install.bat" SelfReg="false" NextFile="opensc.conf"/>
     <ROW File="install_firefox_xpi.vbs" Component_="firefox_pkcs11_module.xpi" FileName="INSTAL~1.VBS|install_firefox_xpi.vbs" Attributes="0" SourcePath="install_firefox_xpi.vbs" SelfReg="false" NextFile="OpenSC_PKCS11_Module_V1.2.xpi"/>
+    <ROW File="myeid.profile" Component_="asepcos.profile" FileName="MYEID~1.PRO|myeid.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\myeid.profile" SelfReg="false" NextFile="oberthur.profile"/>
+    <ROW File="oberthur.profile" Component_="asepcos.profile" FileName="OBERTH~1.PRO|oberthur.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\oberthur.profile" SelfReg="false" NextFile="openpgp.profile"/>
+    <ROW File="openpgp.profile" Component_="asepcos.profile" FileName="OPENPG~1.PRO|openpgp.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\openpgp.profile" SelfReg="false" NextFile="pkcs15.profile"/>
+    <ROW File="openpgptool.exe" Component_="openpgptool.exe" FileName="OPENPG~1.EXE|openpgp-tool.exe" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\tools\openpgp-tool.exe" SelfReg="false" NextFile="openscexplorer.exe"/>
+    <ROW File="opensc.conf" Component_="firefox_pkcs11_module.xpi" FileName="OPENSC~1.CON|opensc.conf" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\opensc.conf" SelfReg="false" NextFile="asepcos.profile"/>
+    <ROW File="opensc.dll" Component_="opensc.dll" FileName="opensc.dll" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\tools\opensc.dll" SelfReg="false" NextFile="opensctool.exe"/>
     <ROW File="opensc20141107_125310win32.msi" Component_="firefox_pkcs11_module.xpi" FileName="OPENSC~1.MSI|opensc-2014-11-07_12-53-10-win32.msi" Attributes="0" SourcePath="opensc-2014-11-07_12-53-10-win32.msi" SelfReg="false" NextFile="OpenSC_Reg32.reg"/>
+    <ROW File="openscexplorer.exe" Component_="openscexplorer.exe" FileName="OPENSC~1.EXE|opensc-explorer.exe" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\tools\opensc-explorer.exe" SelfReg="false" NextFile="opensc.dll"/>
+    <ROW File="openscminidriver.dll" Component_="openscminidriver.dll" FileName="OPENSC~1.DLL|opensc-minidriver.dll" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\opensc-minidriver.dll" SelfReg="false" NextFile="openscpkcs11.dll"/>
+    <ROW File="openscminidriver.dll_1" Component_="openscminidriver.dll_1" FileName="OPENSC~1.DLL|opensc-minidriver.dll" Attributes="512" SourcePath="test64\OpenSC (64bit) 0.14.0.0\Files\opensc-minidriver.dll" SelfReg="false" NextFile="openscpkcs11.dll_1"/>
+    <ROW File="openscpkcs11.dll" Component_="openscpkcs11.dll" FileName="OPENSC~2.DLL|opensc-pkcs11.dll" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\opensc-pkcs11.dll" SelfReg="false" NextFile="openscminidriver.dll_1"/>
+    <ROW File="openscpkcs11.dll_1" Component_="openscpkcs11.dll_1" FileName="OPENSC~2.DLL|opensc-pkcs11.dll" Attributes="512" SourcePath="test64\OpenSC (64bit) 0.14.0.0\Files\opensc-pkcs11.dll" SelfReg="false" NextFile="pkcs11spy.dll_2"/>
+    <ROW File="opensctool.exe" Component_="opensctool.exe" FileName="OPENSC~2.EXE|opensc-tool.exe" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\tools\opensc-tool.exe" SelfReg="false" NextFile="pkcs11spy.dll"/>
+    <ROW File="pkcs11spy.dll" Component_="pkcs11spy.dll" FileName="PKCS11~1.DLL|pkcs11-spy.dll" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\PKCS11-Spy\pkcs11-spy.dll" SelfReg="false" NextFile="openscminidriver.dll"/>
+    <ROW File="pkcs11spy.dll_2" Component_="pkcs11spy.dll_2" FileName="PKCS11~1.DLL|pkcs11-spy.dll" Attributes="512" SourcePath="test64\OpenSC (64bit) 0.14.0.0\Files\PFiles\OpenSC Project\PKCS11-Spy\pkcs11-spy.dll" SelfReg="false"/>
+    <ROW File="pkcs11tool.exe" Component_="pkcs11tool.exe" FileName="PKCS11~1.EXE|pkcs11-tool.exe" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\tools\pkcs11-tool.exe" SelfReg="false" NextFile="schsmtool.exe"/>
+    <ROW File="pkcs15.profile" Component_="asepcos.profile" FileName="PKCS15~1.PRO|pkcs15.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\pkcs15.profile" SelfReg="false" NextFile="setcos.profile"/>
+    <ROW File="pkcs15crypt.exe" Component_="pkcs15crypt.exe" FileName="PKCS15~1.EXE|pkcs15-crypt.exe" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\tools\pkcs15-crypt.exe" SelfReg="false" NextFile="smmlocal.dll"/>
+    <ROW File="pkcs15init.exe" Component_="pkcs15init.exe" FileName="PKCS15~2.EXE|pkcs15-init.exe" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\tools\pkcs15-init.exe" SelfReg="false" NextFile="pkcs15tool.exe"/>
+    <ROW File="pkcs15tool.exe" Component_="pkcs15tool.exe" FileName="PKCS15~3.EXE|pkcs15-tool.exe" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\tools\pkcs15-tool.exe" SelfReg="false" NextFile="dnietool.exe"/>
+    <ROW File="rutoken.profile" Component_="asepcos.profile" FileName="RUTOKE~1.PRO|rutoken.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\rutoken.profile" SelfReg="false" NextFile="rutoken_ecp.profile"/>
+    <ROW File="rutoken_ecp.profile" Component_="asepcos.profile" FileName="RUTOKE~2.PRO|rutoken_ecp.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\rutoken_ecp.profile" SelfReg="false" NextFile="schsm.profile"/>
+    <ROW File="schsm.profile" Component_="asepcos.profile" FileName="SC-HSM~1.PRO|sc-hsm.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\sc-hsm.profile" SelfReg="false" NextFile="starcos.profile"/>
+    <ROW File="schsmtool.exe" Component_="schsmtool.exe" FileName="SC-HSM~1.EXE|sc-hsm-tool.exe" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\tools\sc-hsm-tool.exe" SelfReg="false" NextFile="pkcs15crypt.exe"/>
+    <ROW File="setcos.profile" Component_="asepcos.profile" FileName="SETCOS~1.PRO|setcos.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\setcos.profile" SelfReg="false" NextFile="rutoken.profile"/>
+    <ROW File="smmlocal.dll" Component_="smmlocal.dll" FileName="SMM-LO~1.DLL|smm-local.dll" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\tools\smm-local.dll" SelfReg="false" NextFile="pkcs15init.exe"/>
+    <ROW File="starcos.profile" Component_="asepcos.profile" FileName="STARCO~1.PRO|starcos.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\starcos.profile" SelfReg="false" NextFile="westcos.profile"/>
+    <ROW File="westcos.profile" Component_="asepcos.profile" FileName="WESTCO~1.PRO|westcos.profile" Attributes="512" SourcePath="test\OpenSC 0.14.0.0\Files\PFiles\OpenSC Project\OpenSC\profiles\westcos.profile" SelfReg="false" NextFile="pkcs11tool.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en" InstallationType="4" UseLargeSchema="true"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en" InstallationType="4" UseLargeSchema="true" MsiPackageType="x64"/>
     <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
@@ -103,9 +176,7 @@
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
-    <ROW Directory_="Buergerkarte_Dir" Component_="Buergerkarte" ManualDelete="false"/>
     <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
-    <ROW Directory_="System32_Dir" Component_="System32" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
@@ -118,7 +189,7 @@
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
-    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
@@ -144,8 +215,17 @@
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="ConfigFile" Root="1" Key="Software\[Manufacturer]\OpenSC" Name="ConfigFile" Value="[APPDIR]opensc.conf" Component_="ConfigFile"/>
+    <ROW Registry="Module" Root="1" Key="Software\[Manufacturer]\PKCS11-Spy" Name="Module" Value="%SystemRoot%\system32\opensc-pkcs11.dll" Component_="Module"/>
+    <ROW Registry="OpenSC" Root="1" Key="Software\[Manufacturer]\OpenSC" Name="*" Component_="OpenSC"/>
+    <ROW Registry="Output" Root="1" Key="Software\[Manufacturer]\PKCS11-Spy" Name="Output" Value="%TEMP%\pkcs11-spy.log" Component_="Output"/>
+    <ROW Registry="PKCS11Spy" Root="1" Key="Software\[Manufacturer]\PKCS11-Spy" Name="*" Component_="PKCS11Spy"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="ProductName_1" Root="1" Key="Software\[Manufacturer]\[ProductName]" Name="+" Component_="ProductName"/>
+    <ROW Registry="ProfileDir" Root="1" Key="Software\[Manufacturer]\OpenSC" Name="ProfileDir" Value="[APPDIR]profiles" Component_="ProfileDir"/>
+    <ROW Registry="SmDir" Root="1" Key="Software\[Manufacturer]\OpenSC" Name="SmDir" Value="[APPDIR]tools" Component_="SmDir"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+    <ROW Registry="installed" Root="1" Key="Software\[Manufacturer]\[ProductName]" Name="installed" Value="#1" Component_="installed"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="buergerkarte" Directory_="StartupFolder" Name="BUERGE~1|buergerkarte" Component_="buergerkarte.exe" Target="[#buergerkarte.exe]" Arguments="startHidden" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
