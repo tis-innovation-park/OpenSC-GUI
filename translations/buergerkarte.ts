@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="de_DE">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -214,67 +214,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/forms/mainwidget.ui" line="23"/>
         <source>Logo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="36"/>
         <source>Change Pin</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pin ändern </translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="75"/>
         <source>Change Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Passwort ändern</translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="84"/>
         <source>Enter current password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bisherige Passwort eingeben:</translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="105"/>
         <source>Enter new password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Neues Passwort:</translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="112"/>
         <source>Confirm new password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Passwort Bestätigen:</translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="132"/>
         <source>Card Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KartenInformation</translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="154"/>
         <source>Address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Addresse:</translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="175"/>
-        <source>Financial Code:</source>
-        <translation type="unfinished"></translation>
+        <source>Tax Number:</source>
+        <translation type="unfinished">Steuernummer:</translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="196"/>
-        <source>Expiring Date</source>
-        <translation type="unfinished"></translation>
+        <source>Expiry Date</source>
+        <translation type="unfinished">Gültig bis</translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="203"/>
-        <source>Sex:</source>
-        <translation type="unfinished"></translation>
+        <source>Gender:</source>
+        <translation type="unfinished">Geschlecht:</translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="217"/>
         <source>Cardholder Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Karteninhaber:</translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="224"/>
         <source>Birthdate:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/forms/mainwidget.ui" line="231"/>
@@ -415,7 +415,7 @@ Using: %4</source>
     </message>
     <message>
         <location filename="../src/mainwidget.cpp" line="298"/>
-        <source>Password missmath</source>
+        <source>Password mismatch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -440,7 +440,7 @@ Using: %4</source>
     </message>
     <message>
         <location filename="../src/mainwidget.cpp" line="315"/>
-        <source>PUK must have between %1 and %2 characters</source>
+        <source>PUK must be between %1 and %2 characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -571,7 +571,7 @@ Using: %4</source>
     <message>
         <location filename="../src/mainwidget.cpp" line="713"/>
         <location filename="../src/mainwidget.cpp" line="718"/>
-        <source>Unable to start firefox, please check your installation</source>
+        <source>Unable to start Firefox, please check your installation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -581,13 +581,13 @@ Using: %4</source>
     </message>
     <message>
         <location filename="../src/mainwidget.cpp" line="715"/>
-        <source>Timeout starting firefox</source>
+        <source>Timeout starting Firefox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwidget.cpp" line="716"/>
         <location filename="../src/mainwidget.cpp" line="717"/>
-        <source>I/O error has occured starting firefox</source>
+        <source>I/O error has occured starting Firefox</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
