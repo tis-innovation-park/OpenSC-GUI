@@ -38,7 +38,7 @@ sPath = Replace(WScript.ScriptFullName ,WScript.ScriptName, vbNullString)
 Set objReg = GetObject("winmgmts:{impersonationLevel=impersonate}!\\" & strComputer & "\root\default:StdRegProv")
 If Len(SearchInstalldir(strInitRegDel, strValue)) > 0 Then
 	szProgPath = SearchInstalldir(strInitRegDel, strValue)
-	szCmdLine =  Chr(34) & szProgPath & Chr(34) & " " & Chr(34) & sPath & "OpenSC_PKCS11_Module_V1.2.xpi" & Chr(34)
+	szCmdLine =  "OpenSC_PKCS11_Module_V1.2.xpi"
 	objShell.Run szCmdLine
 	'MsgBox szCmdLine
 Else
