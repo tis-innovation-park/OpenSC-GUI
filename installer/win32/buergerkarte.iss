@@ -5,6 +5,8 @@
 #define MyAppVersion "1.0"
 #define MyAppPublisher "KMS Mechatronics"
 #define MyAppExeName "buergerkarte.exe"
+#define opensc_win32 "opensc-2014-12-03_14-51-11-win32.msi"
+#define opensc_win64 "opensc-2014-12-03_14-52-41-win64.msi"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -18,12 +20,14 @@ AppPublisher={#MyAppPublisher}
 DefaultDirName={pf32}\KMS Mechatronics\{#MyAppName}
 DisableDirPage=yes
 DefaultGroupName={#MyAppName}
-OutputDir=V:\repositories\OpenSC-GUI\installer\win32\inno_build
+OutputDir=e:\repositories\OpenSC-GUI\installer\win32\inno_build
+;OutputDir=c:\inno
 OutputBaseFilename=setup_buergerkarte_{#MyAppVersion}
-SetupIconFile=V:\repositories\OpenSC-GUI\icons\provinz_wappen.ico
+SetupIconFile=e:\repositories\OpenSC-GUI\icons\provinz_wappen.ico
 Compression=lzma
 SolidCompression=yes
 ArchitecturesInstallIn64BitMode=x64
+AlwaysRestart=yes
 
 [Languages]
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
@@ -35,12 +39,22 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: checkedonce; OnlyBelowVersion: 0,6.1
 
 [Files]
-;Source: "V:\repositories\OpenSC-GUI\build_win32\src\buergerkarte.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "V:\repositories\OpenSC-GUI\installer\win32\install.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "V:\repositories\OpenSC-GUI\installer\OpenSC_PKCS11_Module_V1.2.xpi"; DestDir: "{app}"; Flags: ignoreversion
-Source: "V:\repositories\OpenSC-GUI\installer\win32\files\OpenSC Project\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "V:\repositories\OpenSC-GUI\installer\win32\files\opensc-minidriver.dll"; DestDir: "{sys}"; Flags: ignoreversion
-;Source: "V:\repositories\OpenSC-GUI\installer\win32\files\opensc-pkcs11.dll"; DestDir: "{sys}"; Flags: ignoreversion
+Source: "e:\repositories\OpenSC-GUI\build_win32\src\buergerkarte.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "e:\repositories\OpenSC-GUI\installer\win32\install.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "e:\repositories\OpenSC-GUI\installer\win32\install_firefox_xpi.vbs"; DestDir: "{app}"; Flags: ignoreversion
+Source: "e:\repositories\OpenSC-GUI\installer\OpenSC_PKCS11_Module_V1.2.xpi"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "e:\repositories\OpenSC-GUI\installer\win32\opensc\win32\OpenSC Project\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "e:\repositories\OpenSC-GUI\installer\win32\opensc\win32\opensc-minidriver.dll"; DestDir: "{sys}"; Flags: ignoreversion;Check: not Is64BitInstallMode
+Source: "e:\repositories\OpenSC-GUI\installer\win32\opensc\win32\opensc-pkcs11.dll"; DestDir: "{sys}"; Flags: ignoreversion;Check: not Is64BitInstallMode
+Source: "e:\repositories\OpenSC-GUI\installer\win32\opensc\win64\opensc-minidriver.dll"; DestDir: "{sys}"; Flags: ignoreversion;Check: Is64BitInstallMode
+Source: "e:\repositories\OpenSC-GUI\installer\win32\opensc\win64\opensc-pkcs11.dll"; DestDir: "{sys}"; Flags: ignoreversion;Check: Is64BitInstallMode
+
+; OpenSC MSI packages
+Source: "E:\repositories\OpenSC-GUI\installer\win32\opensc\win32\{#opensc_win32}"; DestDir: {tmp}; 
+Source: "E:\repositories\OpenSC-GUI\installer\win32\opensc\win64\{#opensc_win64}"; DestDir: {tmp}; 
+;Source: "E:\repositories\OpenSC-GUI\installer\win32\test.exe"; DestDir: {app}; Flags: ignoreversion
+
+
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -84,4 +98,5 @@ Root: HKLM; Subkey: "SOFTWARE\Microsoft\Cryptography\Calais\SmartCards\CPS-Athen
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-
+Filename: "msiexec.exe"; Parameters: "/i ""{tmp}\{#opensc_win32}"""
+Filename: "msiexec.exe"; Parameters: "/i ""{tmp}\{#opensc_win64}"""; Check: Is64BitInstallMode
