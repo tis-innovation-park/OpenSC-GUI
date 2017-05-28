@@ -472,6 +472,7 @@ void MainWidget::currentPinEditingFinished() {
 
 
 void MainWidget::currentPinTextChanged( const QString& text ) {
+  Q_UNUSED(text)
   updatePinChangeButtonState();
   QString oldPin = _ui.currentPasswordLineEdit->text();
   if( oldPin == "" || ( !pinTooShort(oldPin, _pinInfo) && !pinTooLong(oldPin, _pinInfo) ))
@@ -495,6 +496,7 @@ void MainWidget::newPinEditingFinished() {
 
 
 void MainWidget::newPinTextChanged( const QString& text ) {
+  Q_UNUSED(text)
   updatePinChangeButtonState();
   QString newPin = _ui.newPasswordLineEdit->text();
   if( newPin == "" || (!pinTooShort(newPin, _pinInfo) && !pinTooLong(newPin, _pinInfo)) )
@@ -526,6 +528,7 @@ void MainWidget::confirmNewPinEditingFinished() {
 
 
 void MainWidget::confirmNewPinTextChanged( const QString& text ) {
+  Q_UNUSED(text)
   updatePinChangeButtonState();
   QString confirmPin = _ui.confirmPasswordLineEdit->text();
   if( confirmPin == "" || (!pinTooShort(confirmPin, _pinInfo) && !pinTooLong(confirmPin, _pinInfo) ))
