@@ -3,33 +3,42 @@
 <TS version="2.0" language="de_DE">
 <context>
     <name>AboutDialog</name>
-    <message>
-        <location filename="../src/forms/aboutdialog.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/forms/aboutdialog.ui" line="22"/>
-        <location filename="../src/forms/aboutdialog.ui" line="42"/>
-        <source>PushButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/forms/aboutdialog.ui" line="71"/>
-        <source>Pin/PUK Manager v1.0</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message utf8="true">
-        <location filename="../src/forms/aboutdialog.ui" line="90"/>
-        <source>A GUI application based on OpenSC used to manage the PIN/PUK on smart cards for the 
-Autonomous Province of Bolzano, South Tyrol Italy  
+        <source>A GUI application based on OpenSC used to manage the PIN/PUK on the CNS smart cards for the Autonomous Province of Bolzano/Bozen, South Tyrol Italy
 
 Copyright © 2014–2014 KMS Mechatronics
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Eine grafische Anwendung auf Basis von OpenSC, um den PIN/PUK der
+Gesundheitskarten (Smartcards) der Autonomen Provinz Bozen-Südtirol zu verwalten
+
+Copyright © 2014–2014 KMS Mechatronic
+Deutschübersetzung: Matthias Dieter Wallnöfer, 2017</translation>
     </message>
     <message>
-        <location filename="../src/forms/aboutdialog.ui" line="107"/>
+        <source>About</source>
+        <translation>Über</translation>
+    </message>
+    <message>
+        <source>&amp;Credits</source>
+        <translation>&amp;Beitragende</translation>
+    </message>
+    <message>
+        <source>&amp;License</source>
+        <translation>&amp;Lizenz</translation>
+    </message>
+    <message>
+        <source>Dialog</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>PushButton</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>PIN/PUK Manager v1.0</source>
+        <translation></translation>
+    </message>
+    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -40,10 +49,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The OpenSC community&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;[Seperate button: License]&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This application is released under the GNU General Public License, version 2&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message utf8="true">
-        <location filename="../src/forms/aboutdialog.ui" line="126"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -186,459 +194,324 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The hypothetical commands `show w&apos; and `show c&apos; should show the appropriate parts of the General Public License. Of course, your program&apos;s commands might be different; for a GUI interface, you would use an “about box”. &lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should also get your employer (if you work as a programmer) or school, if any, to sign a “copyright disclaimer” for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see &amp;lt;&lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.gnu.org/licenses/&lt;/span&gt;&lt;/a&gt;&amp;gt;. &lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The GNU General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library. If this is what you want to do, use the GNU Lesser General Public License instead of this License. But first, please read &amp;lt;&lt;a href=&quot;http://www.gnu.org/philosophy/why-not-lgpl.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.gnu.org/philosophy/why-not-lgpl.html&lt;/span&gt;&lt;/a&gt;&amp;gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/aboutdialog.cpp" line="6"/>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/aboutdialog.cpp" line="7"/>
-        <source>&amp;Credits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/aboutdialog.cpp" line="8"/>
-        <source>&amp;License</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="../src/forms/mainwidget.ui" line="14"/>
-        <source>MainWindow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/forms/mainwidget.ui" line="23"/>
-        <source>Logo</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/forms/mainwidget.ui" line="36"/>
-        <source>Change Pin</source>
-        <translation type="unfinished">Pin ändern </translation>
-    </message>
-    <message>
-        <location filename="../src/forms/mainwidget.ui" line="75"/>
-        <source>Change Password</source>
-        <translation type="unfinished">Passwort ändern</translation>
-    </message>
-    <message>
-        <location filename="../src/forms/mainwidget.ui" line="84"/>
-        <source>Enter current password:</source>
-        <translation type="unfinished">Bisherige Passwort eingeben:</translation>
-    </message>
-    <message>
-        <location filename="../src/forms/mainwidget.ui" line="105"/>
-        <source>Enter new password:</source>
-        <translation type="unfinished">Neues Passwort:</translation>
-    </message>
-    <message>
-        <location filename="../src/forms/mainwidget.ui" line="112"/>
-        <source>Confirm new password:</source>
-        <translation type="unfinished">Passwort Bestätigen:</translation>
-    </message>
-    <message>
-        <location filename="../src/forms/mainwidget.ui" line="132"/>
         <source>Card Information</source>
-        <translation type="unfinished">KartenInformation</translation>
+        <translation>Karteninformation</translation>
     </message>
     <message>
-        <location filename="../src/forms/mainwidget.ui" line="154"/>
         <source>Address:</source>
-        <translation type="unfinished">Addresse:</translation>
+        <translation>Addresse:</translation>
     </message>
     <message>
-        <location filename="../src/forms/mainwidget.ui" line="175"/>
         <source>Tax Number:</source>
-        <translation type="unfinished">Steuernummer:</translation>
+        <translation>Steuernummer:</translation>
     </message>
     <message>
-        <location filename="../src/forms/mainwidget.ui" line="196"/>
-        <source>Expiry Date</source>
-        <translation type="unfinished">Gültig bis</translation>
-    </message>
-    <message>
-        <location filename="../src/forms/mainwidget.ui" line="203"/>
-        <source>Gender:</source>
-        <translation type="unfinished">Geschlecht:</translation>
-    </message>
-    <message>
-        <location filename="../src/forms/mainwidget.ui" line="217"/>
         <source>Cardholder Name:</source>
         <translation>Karteninhaber:</translation>
     </message>
     <message>
-        <location filename="../src/forms/mainwidget.ui" line="224"/>
         <source>Birthdate:</source>
-        <translation></translation>
+        <translation>Geburtsdatum:</translation>
     </message>
     <message>
-        <location filename="../src/forms/mainwidget.ui" line="231"/>
-        <source>Issuing Date</source>
-        <translation type="unfinished"></translation>
+        <source>Change PIN</source>
+        <translation>PIN ändern</translation>
     </message>
     <message>
-        <location filename="../src/forms/mainwidget.ui" line="238"/>
-        <location filename="../src/forms/mainwidget.ui" line="277"/>
+        <source>Enter current PIN:</source>
+        <translation>Bisheriger PIN:</translation>
+    </message>
+    <message>
+        <source>Enter new PIN:</source>
+        <translation>Neuer PIN:</translation>
+    </message>
+    <message>
+        <source>Confirm new PIN:</source>
+        <translation>Bestätigung neuer PIN:</translation>
+    </message>
+    <message>
+        <source>Expiry Date:</source>
+        <translation>Verfallsdatum:</translation>
+    </message>
+    <message>
+        <source>Sex:</source>
+        <translation>Geschlecht:</translation>
+    </message>
+    <message>
+        <source>Issuing Date:</source>
+        <translation>Herausgabedatum:</translation>
+    </message>
+    <message>
         <source>Serial Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seriennummer:</translation>
     </message>
     <message>
-        <location filename="../src/forms/mainwidget.ui" line="255"/>
-        <location filename="../src/mainwidget.cpp" line="94"/>
         <source>Authentication Certificate (X509)</source>
-        <translation type="unfinished"></translation>
+        <translation>Authentifikationszertifikat (X509)</translation>
     </message>
     <message>
-        <location filename="../src/forms/mainwidget.ui" line="291"/>
         <source>Valid from:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gültig von:</translation>
     </message>
     <message>
-        <location filename="../src/forms/mainwidget.ui" line="298"/>
         <source>Valid until:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gültig bis:</translation>
     </message>
     <message>
-        <location filename="../src/forms/mainwidget.ui" line="312"/>
         <source>Issuer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Herausgeber:</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="28"/>
         <source>CNS Card Control</source>
-        <translation type="unfinished"></translation>
+        <translation>Bürgerkarte</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="45"/>
-        <source>Buergerkarte debug window</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Change PIN</source>
+        <translation>&amp;PIN ändern</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="92"/>
-        <source>Change pin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwidget.cpp" line="93"/>
-        <source>Card information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwidget.cpp" line="95"/>
-        <source>&amp;Change password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwidget.cpp" line="163"/>
         <source>Mi&amp;nimize</source>
-        <translation type="unfinished"></translation>
+        <translation>Mi&amp;nimieren</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="165"/>
         <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Öffnen...</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="167"/>
         <source>&amp;About...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Über...</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="169"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="171"/>
         <source>&amp;Enable Debug View</source>
-        <translation type="unfinished"></translation>
+        <translation>Debugsicht &amp;einblenden</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="173"/>
         <source>&amp;Update Firefox</source>
-        <translation type="unfinished"></translation>
+        <translation>Firefox &amp;aktualisieren</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="261"/>
         <source>Software Version: %1
 Compile Date: %2 %3
 Using: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>Softwareversion: %1
+Komplierdatum: %2 %3
+Durch: %4</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="262"/>
         <source>About Buegerkarte</source>
-        <translation type="unfinished"></translation>
+        <translation>Über Bürgerkarte</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="273"/>
-        <location filename="../src/mainwidget.cpp" line="282"/>
-        <location filename="../src/mainwidget.cpp" line="293"/>
-        <source>Empty Pin field</source>
-        <translation type="unfinished"></translation>
+        <source>Empty PIN field</source>
+        <translation>Leeres PIN-Feld</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="273"/>
-        <source>Please enter current Pin</source>
-        <translation type="unfinished"></translation>
+        <source>Please enter current PIN</source>
+        <translation>Bitte den bisherigen PIN eingeben</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="275"/>
-        <location filename="../src/mainwidget.cpp" line="286"/>
-        <source>Incorrect Pin size</source>
-        <translation type="unfinished"></translation>
+        <source>Incorrect PIN size</source>
+        <translation>Falsche Länge des PINs</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="275"/>
-        <source>Current Pin must have between %1 and %2 characters</source>
-        <translation type="unfinished"></translation>
+        <source>Current PIN must have between %1 and %2 characters</source>
+        <translation>PIN muss zwischen %1 und %2 Zeichen lang sein</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="282"/>
-        <source>Please enter new Pin</source>
-        <translation type="unfinished"></translation>
+        <source>Please enter new PIN</source>
+        <translation>Bitte den neuen PIN eingeben</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="286"/>
-        <source>New Pin must have between %1 and %2 characters</source>
-        <translation type="unfinished"></translation>
+        <source>New PIN must have between %1 and %2 characters</source>
+        <translation>Neuer PIN muss zwischen %1 und %2 Zeichen lang sein</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="293"/>
-        <source>Please confirm new Pin</source>
-        <translation type="unfinished"></translation>
+        <source>Please confirm new PIN</source>
+        <translation>Bitte den neuen PIN bestätigen</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="298"/>
-        <source>Password mismatch</source>
-        <translation type="unfinished"></translation>
+        <source>Buergerkarte Debug Window</source>
+        <translation>Bürgerkarte Debugsicht</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="298"/>
-        <source>Confirmed Pin does not math new Pin</source>
-        <translation type="unfinished"></translation>
+        <source>Confirmed PIN does not match new PIN</source>
+        <translation>Bestätigungs-PIN stimmt nicht mit dem neuen PIN überein</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="312"/>
+        <source>PIN missmatch</source>
+        <translation>PIN-Fehler</translation>
+    </message>
+    <message>
         <source>Empty PUK field</source>
-        <translation type="unfinished"></translation>
+        <translation>Leeres PUK-Feld</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="312"/>
         <source>Please enter PUK</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte PUK eingeben</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="315"/>
         <source>Incorrect PUK size</source>
-        <translation type="unfinished"></translation>
+        <translation>Falsche Länge des PUKs</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="315"/>
-        <source>PUK must be between %1 and %2 characters</source>
-        <translation type="unfinished"></translation>
+        <source>PUK must have between %1 and %2 characters</source>
+        <translation>PUK muss zwischen %1 und %2 Zeichen lang sein</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="339"/>
         <source>Card Reader was connected:
  Reader: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartenleser wurde verbunden:
+ Lesegerät: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="340"/>
         <source>Card Reader Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartenleser verbunden</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="346"/>
         <source>Smart Card was inserted:
  Card: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Smartcard wurde eingeschoben:
+ Karte: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="347"/>
         <source>Smart Card Inserted</source>
-        <translation type="unfinished"></translation>
+        <translation>Smartcard eingeschoben</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="354"/>
         <source>Card Reader was removed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartenleser wurde entfernt!</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="355"/>
         <source>Card Reader removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartenleser entfernt</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="372"/>
         <source>Smart Card was removed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Smartcard wurde entfernt!</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="373"/>
         <source>Smart Card removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Smartcard entfernt</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="394"/>
-        <location filename="../src/mainwidget.cpp" line="395"/>
-        <location filename="../src/mainwidget.cpp" line="396"/>
-        <location filename="../src/mainwidget.cpp" line="405"/>
-        <location filename="../src/mainwidget.cpp" line="424"/>
-        <source>[Min:%1  Max:%2]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwidget.cpp" line="403"/>
-        <location filename="../src/mainwidget.cpp" line="421"/>
-        <location filename="../src/mainwidget.cpp" line="713"/>
-        <location filename="../src/mainwidget.cpp" line="714"/>
-        <location filename="../src/mainwidget.cpp" line="715"/>
-        <location filename="../src/mainwidget.cpp" line="716"/>
-        <location filename="../src/mainwidget.cpp" line="717"/>
-        <location filename="../src/mainwidget.cpp" line="718"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="403"/>
-        <source>Error changing pin %1</source>
-        <translation type="unfinished"></translation>
+        <source>Error changing PIN %1</source>
+        <translation>Fehler bei der Änderung des PIN %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="410"/>
-        <source>Pin changed</source>
-        <translation type="unfinished"></translation>
+        <source>PIN changed</source>
+        <translation>PIN geändert</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="410"/>
-        <source>Pin has been successfully changed</source>
-        <translation type="unfinished"></translation>
+        <source>PIN has been successfully changed</source>
+        <translation>PIN wurde erfolgreich geändert</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="421"/>
-        <source>Error unblocking pin %1</source>
-        <translation type="unfinished"></translation>
+        <source>Error unblocking PIN %1</source>
+        <translation>Fehler bei der PIN-Entriegelung %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="423"/>
-        <source>Pin unblocked</source>
-        <translation type="unfinished"></translation>
+        <source>PIN unblocked</source>
+        <translation>PIN entriegelt</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="423"/>
-        <source>Pin has been successfully unblocked</source>
-        <translation type="unfinished"></translation>
+        <source>PIN has been successfully unblocked</source>
+        <translation>PIN wurde erfolgreich entriegelt</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="464"/>
-        <location filename="../src/mainwidget.cpp" line="487"/>
-        <location filename="../src/mainwidget.cpp" line="516"/>
-        <source>Pin too short</source>
-        <translation type="unfinished"></translation>
+        <source>PIN too short</source>
+        <translation>PIN zu kurz</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="466"/>
-        <location filename="../src/mainwidget.cpp" line="489"/>
-        <location filename="../src/mainwidget.cpp" line="518"/>
-        <source>Pin too long</source>
-        <translation type="unfinished"></translation>
+        <source>PIN too long</source>
+        <translation>PIN zu lang</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="573"/>
-        <source>&amp;Enable debug view</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Disable Debug View</source>
+        <translation>Debugsicht &amp;ausblenden</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="576"/>
-        <source>&amp;Disable debug view</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwidget.cpp" line="683"/>
-        <location filename="../src/mainwidget.cpp" line="689"/>
-        <location filename="../src/mainwidget.cpp" line="695"/>
-        <location filename="../src/mainwidget.cpp" line="701"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannt</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="713"/>
-        <location filename="../src/mainwidget.cpp" line="718"/>
-        <source>Unable to start Firefox, please check your installation</source>
-        <translation type="unfinished"></translation>
+        <source>Unable to start firefox, please check your installation</source>
+        <translation>Firefox kann nicht gestartet werden, überprüfen Sie Ihre Installation</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="714"/>
+        <source>Timeout starting firefox</source>
+        <translation>Zeitüberschreitung beim Start von Firefox</translation>
+    </message>
+    <message>
+        <source>I/O error has occured starting firefox</source>
+        <translation>Ein/Ausgabe-Fehler beim Start von Firefox</translation>
+    </message>
+    <message>
         <source>Firefox has crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>Firefox ist abgestürzt</translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="715"/>
-        <source>Timeout starting Firefox</source>
-        <translation type="unfinished"></translation>
+        <source>MainWindow</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="716"/>
-        <location filename="../src/mainwidget.cpp" line="717"/>
-        <source>I/O error has occured starting Firefox</source>
-        <translation type="unfinished"></translation>
+        <source>Logo</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>[Min:%1  Max:%2]</source>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>PukDialog</name>
     <message>
-        <location filename="../src/forms/pukdialog.ui" line="14"/>
+        <source>Insert PUK</source>
+        <translation>PUK eingeben</translation>
+    </message>
+    <message>
+        <source>Please enter PUK:</source>
+        <translation>Bitte PUK eingeben:</translation>
+    </message>
+    <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../src/forms/pukdialog.ui" line="20"/>
-        <location filename="../src/pukdialog.cpp" line="8"/>
-        <source>Please Enter PUK:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/pukdialog.cpp" line="7"/>
-        <source>Insert Puk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/pukdialog.cpp" line="19"/>
         <source>[Min:%1  Max:%2]</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../src/statusbar.cpp" line="11"/>
-        <location filename="../src/statusbar.cpp" line="45"/>
         <source>Card Reader: Not Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartenleser: nicht verbunden</translation>
     </message>
     <message>
-        <location filename="../src/statusbar.cpp" line="14"/>
-        <location filename="../src/statusbar.cpp" line="46"/>
-        <location filename="../src/statusbar.cpp" line="50"/>
         <source>Card: No Card</source>
-        <translation type="unfinished"></translation>
+        <translation>Karte: Keine Karte</translation>
     </message>
     <message>
-        <location filename="../src/statusbar.cpp" line="37"/>
         <source>Card Reader: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartenleser: %1</translation>
     </message>
     <message>
-        <location filename="../src/statusbar.cpp" line="41"/>
         <source>Card: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Karte: %1</translation>
     </message>
 </context>
 </TS>
