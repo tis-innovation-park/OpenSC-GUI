@@ -42,7 +42,7 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
   _textEdit = new QTextEdit();
   logger().setLogWidget( _textEdit );
   _textEdit->hide();
-  _textEdit->setWindowTitle(tr("Buergerkarte debug window") );
+  _textEdit->setWindowTitle(tr("Buergerkarte Debug Window") );
   
   setupTrayIcon();
   _trayIcon->show();
@@ -89,12 +89,9 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
   _ui.logoLabel->setMinimumSize( _logosize );
   _ui.logoLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
   
-  _ui.tabWidget->setTabText(0, tr("Change pin") );
-  _ui.tabWidget->setTabText(1, tr("Card information") );
-  _ui.tabWidget->setTabText(2, tr("Authentication Certificate (X509)") );    
-  _ui.changePasswordButton->setText( tr("&Change password") );
-  
-  this->setFixedSize(_logosize.width() + 100, _logosize.height() + 300);
+  _ui.changePasswordButton->setText( tr("&Change PIN") );
+
+  this->setFixedSize(_logosize.width() + 110, _logosize.height() + 300);
   
 }
 
@@ -270,32 +267,32 @@ void MainWidget::changePasswordButtonClicked() {
   
   if( !_pinBlocked ) {
     if( currentPassword == "" ) {
-      QMessageBox::warning(this, tr("Empty Pin field"), tr("Please enter current Pin"));
+      QMessageBox::warning(this, tr("Empty PIN field"), tr("Please enter current PIN"));
     } else if( _pinInfo.isValid && ( currentPassword.size() < _pinInfo.minLength || currentPassword.size() > _pinInfo.maxLength ) ) {
-      QMessageBox::warning(this, tr("Incorrect Pin size"), tr("Current Pin must have between %1 and %2 characters").arg(_pinInfo.minLength).arg(_pinInfo.maxLength));
+      QMessageBox::warning(this, tr("Incorrect PIN size"), tr("Current PIN must have between %1 and %2 characters").arg(_pinInfo.minLength).arg(_pinInfo.maxLength));
       _ui.currentPasswordLineEdit->clear();
       return;    
     }
   }
   
   if( newPassword == "" ) {
-    QMessageBox::warning(this, tr("Empty Pin field"), tr("Please enter new Pin"));
+    QMessageBox::warning(this, tr("Empty PIN field"), tr("Please enter new PIN"));
     _ui.confirmPasswordLineEdit->clear();
     return;
   } else if( _pinInfo.isValid && ( newPassword.size() < _pinInfo.minLength || newPassword.size() > _pinInfo.maxLength ) ) {
-    QMessageBox::warning(this, tr("Incorrect Pin size"), tr("New Pin must have between %1 and %2 characters").arg(_pinInfo.minLength).arg(_pinInfo.maxLength));
+    QMessageBox::warning(this, tr("Incorrect PIN size"), tr("New PIN must have between %1 and %2 characters").arg(_pinInfo.minLength).arg(_pinInfo.maxLength));
     _ui.newPasswordLineEdit->clear();
     _ui.confirmPasswordLineEdit->clear();
     return;    
   }
   
   if( newPasswordConfirmed == "" ) {
-    QMessageBox::warning(this, tr("Empty Pin field"), tr("Please confirm new Pin"));
+    QMessageBox::warning(this, tr("Empty PIN field"), tr("Please confirm new PIN"));
     return;
   }
   
   if( newPassword != newPasswordConfirmed ) {
-    QMessageBox::warning(this, tr("Password missmath"), tr("Confirmed Pin does not math new Pin"));
+    QMessageBox::warning(this, tr("PIN missmatch"), tr("Confirmed PIN does not match new PIN"));
     _ui.newPasswordLineEdit->clear();
     _ui.confirmPasswordLineEdit->clear();
     return;
@@ -400,14 +397,14 @@ void MainWidget::pkcs15PinInfoWasGathered(sc_pkcs15_auth_info_t pinInfo) {
 //This slot will be called when a pin change request has been finished, and in case of an error it contains the relevant error context    
 void MainWidget::pksc15PinChangeDone(Error err) {
   if( err.hasError() ) { 
-    QMessageBox::critical(this, tr("Error"), QString(tr("Error changing pin %1")).arg(sc_strerror(err.scError())));
+    QMessageBox::critical(this, tr("Error"), QString(tr("Error changing PIN %1")).arg(sc_strerror(err.scError())));
     if( err.scError() == SC_ERROR_AUTH_METHOD_BLOCKED ) {
       QString pinLengthTxt = _pinInfo.isValid ? tr("[Min:%1  Max:%2]").arg(_pinInfo.minLength).arg(_pinInfo.maxLength) : "";
       _ui.changePasswordButton->setText(tr(DEFAULT_TEXT_UNBLOCK_PIN_BUTTON));
       _pinBlocked = true;
     }
   } else {
-    QMessageBox::information(this, tr("Pin changed"), tr("Pin has been successfully changed")); 
+    QMessageBox::information(this, tr("PIN changed"), tr("PIN has been successfully changed"));
   }
   _ui.currentPasswordLineEdit->clear();
   _ui.newPasswordLineEdit->clear();
@@ -418,9 +415,9 @@ void MainWidget::pksc15PinChangeDone(Error err) {
 //This slot will be called when a pin unblock request has been finished, and in case of an error it contains the relevant error context    
 void MainWidget::pksc15PinUnblockDone(Error err) {
   if( err.hasError() ) { 
-    QMessageBox::critical(this, tr("Error"), QString(tr("Error unblocking pin %1")).arg(sc_strerror(err.scError())));
+    QMessageBox::critical(this, tr("Error"), QString(tr("Error unblocking PIN %1")).arg(sc_strerror(err.scError())));
   } else {
-    QMessageBox::information(this, tr("Pin unblocked"), tr("Pin has been successfully unblocked")); 
+    QMessageBox::information(this, tr("PIN unblocked"), tr("PIN has been successfully unblocked"));
     QString pinLengthTxt = _pinInfo.isValid ? tr("[Min:%1  Max:%2]").arg(_pinInfo.minLength).arg(_pinInfo.maxLength) : "";
     _ui.newPinLabel->setText( tr(DEFAULT_TEXT_INSERT_NEW_PIN)+ pinLengthTxt );
     _ui.confirmPinLabel->setText( tr(DEFAULT_TEXT_CONFIRM_NEW_PIN) + pinLengthTxt );
@@ -461,9 +458,9 @@ void MainWidget::currentPinEditingFinished() {
   if( _ui.currentPasswordLineEdit->text() != "" ) {
     QString oldPin = _ui.currentPasswordLineEdit->text();
     if( pinTooShort(oldPin, _pinInfo) ) {
-      _ui.currentPinInfoLabel->setText(tr("Pin too short"));
+      _ui.currentPinInfoLabel->setText(tr("PIN too short"));
     } else if( pinTooLong( oldPin, _pinInfo ) ){
-      _ui.currentPinInfoLabel->setText(tr("Pin too long"));
+      _ui.currentPinInfoLabel->setText(tr("PIN too long"));
     } else {
       _ui.currentPinInfoLabel->setText("");
     }
@@ -485,9 +482,9 @@ void MainWidget::newPinEditingFinished() {
   if( _ui.newPasswordLineEdit->text() != "" ) {
     QString newPin = _ui.newPasswordLineEdit->text();
     if( pinTooShort(newPin, _pinInfo) ) {
-      _ui.newPinInfoLabel->setText(tr("Pin too short"));
+      _ui.newPinInfoLabel->setText(tr("PIN too short"));
     } else if( pinTooLong( newPin, _pinInfo ) ){
-      _ui.newPinInfoLabel->setText(tr("Pin too long"));
+      _ui.newPinInfoLabel->setText(tr("PIN too long"));
     } else {
       _ui.newPinInfoLabel->setText("");
     }
@@ -505,7 +502,7 @@ void MainWidget::newPinTextChanged( const QString& text ) {
     if( _ui.confirmPasswordLineEdit->text() == newPin )
       _ui.confirmPinInfoLabel->setText("");
     else
-      _ui.confirmPinInfoLabel->setText("Does not match new pin");
+      _ui.confirmPinInfoLabel->setText("Does not match new PIN");
   }
 }
 
@@ -515,11 +512,11 @@ void MainWidget::confirmNewPinEditingFinished() {
   if( _ui.confirmPasswordLineEdit->text() != "" ) {
     QString confirmPin = _ui.confirmPasswordLineEdit->text();
     if( pinTooShort(confirmPin, _pinInfo) ) {
-      _ui.confirmPinInfoLabel->setText(tr("Pin too short"));
+      _ui.confirmPinInfoLabel->setText(tr("PIN too short"));
     } else if( pinTooLong( confirmPin, _pinInfo ) ){
-      _ui.confirmPinInfoLabel->setText(tr("Pin too long"));
+      _ui.confirmPinInfoLabel->setText(tr("PIN too long"));
     } else if( confirmPin != _ui.newPasswordLineEdit->text() ) {
-      _ui.confirmPinInfoLabel->setText("Does not match new pin");
+      _ui.confirmPinInfoLabel->setText("Does not match new PIN");
     } else {
       _ui.confirmPinInfoLabel->setText("");
     }
@@ -534,7 +531,7 @@ void MainWidget::confirmNewPinTextChanged( const QString& text ) {
   if( confirmPin == "" || (!pinTooShort(confirmPin, _pinInfo) && !pinTooLong(confirmPin, _pinInfo) ))
     _ui.confirmPinInfoLabel->setText(""); 
   if( confirmPin != _ui.newPasswordLineEdit->text() && confirmPin.size() > 0 ) {
-      _ui.confirmPinInfoLabel->setText("Does not match new pin");
+      _ui.confirmPinInfoLabel->setText("Does not match new PIN");
   }
 }
 
@@ -573,10 +570,10 @@ void MainWidget::openDebugDialogTriggered(){
 void MainWidget::enableDebugViewActionTriggered(){
   if ( _textEdit->isVisible() ) {
     _textEdit->hide();
-    _enableDebugViewAction->setText( tr("&Enable debug view") );
+    _enableDebugViewAction->setText( tr("&Enable Debug View") );
   } else {
     _textEdit->show();
-    _enableDebugViewAction->setText( tr("&Disable debug view") );
+    _enableDebugViewAction->setText( tr("&Disable Debug View") );
   }
 }
 

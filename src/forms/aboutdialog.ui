@@ -68,7 +68,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Pin/PUK Manager v1.0</string>
+      <string>PIN/PUK Manager v1.0</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -87,8 +87,7 @@
         </font>
        </property>
        <property name="text">
-        <string>A GUI application based on OpenSC used to manage the PIN/PUK on smart cards for the 
-Autonomous Province of Bolzano, South Tyrol Italy  
+        <string>A GUI application based on OpenSC used to manage the PIN/PUK on the CNS smart cards for the Autonomous Province of Bolzano/Bozen, South Tyrol Italy
 
 Copyright © 2014–2014 KMS Mechatronics
 </string>

@@ -4,8 +4,7 @@
 PukDialog::PukDialog(QWidget* parent):QDialog(parent){
   _ui.setupUi( this );
   _ui.pukLabel->setText( tr(DEFAULT_TEXT_INSERT_PUK) );
-  setWindowTitle( tr("Insert Puk") );
-  _ui.pukLabel->setText( tr("Please Enter PUK:") );
+  setWindowTitle( tr("Insert PUK") );
 }
 
 

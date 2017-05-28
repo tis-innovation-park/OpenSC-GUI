@@ -33,7 +33,7 @@
       </property>
       <widget class="QWidget" name="pinChangeTab">
        <attribute name="title">
-        <string>Change Pin</string>
+        <string>Change PIN</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
@@ -72,7 +72,7 @@
            <item row="4" column="2">
             <widget class="QPushButton" name="changePasswordButton">
              <property name="text">
-              <string>Change Password</string>
+              <string>Change PIN</string>
              </property>
             </widget>
            </item>
@@ -81,7 +81,7 @@
              <item row="0" column="0">
               <widget class="QLabel" name="oldPinLabel">
                <property name="text">
-                <string>Enter current password:</string>
+                <string>Enter current PIN:</string>
                </property>
               </widget>
              </item>
@@ -102,14 +102,14 @@
              <item row="1" column="0">
               <widget class="QLabel" name="newPinLabel">
                <property name="text">
-                <string>Enter new password:</string>
+                <string>Enter new PIN:</string>
                </property>
               </widget>
              </item>
              <item row="2" column="0">
               <widget class="QLabel" name="confirmPinLabel">
                <property name="text">
-                <string>Confirm new password:</string>
+                <string>Confirm new PIN:</string>
                </property>
               </widget>
              </item>
@@ -172,7 +172,7 @@
           <item row="3" column="0">
            <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>Financial Code:</string>
+             <string>Tax Number:</string>
             </property>
            </widget>
           </item>
@@ -193,7 +193,7 @@
           <item row="1" column="2">
            <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>Expiring Date</string>
+             <string>Expiry Date:</string>
             </property>
            </widget>
           </item>
@@ -228,7 +228,7 @@
           <item row="1" column="0">
            <widget class="QLabel" name="label">
             <property name="text">
-             <string>Issuing Date</string>
+             <string>Issuing Date:</string>
             </property>
            </widget>
           </item>

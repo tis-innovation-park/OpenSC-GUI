@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="pukLabel">
      <property name="text">
-      <string>Please Enter PUK:</string>
+      <string>Please enter PUK:</string>
      </property>
     </widget>
    </item>
