@@ -4,6 +4,7 @@
 AboutDialog::AboutDialog(QWidget* parent):QDialog(parent){
   _ui.setupUi( this );
   setWindowTitle( tr("About") );
+  _ui.label->setText( _ui.label->text() + " " BUERGERKARTE_SW_VERSION );
   _ui.creditsButton->setText( tr("&Credits") );
   _ui.licenseButton->setText( tr("&License") );
   
