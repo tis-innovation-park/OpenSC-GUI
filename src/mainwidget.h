@@ -23,8 +23,6 @@
 
 using namespace std;
 
-#define BUERGERKATRE_SW_VERSION 1.0
-
 #define DEFAULT_TEXT_INSERT_CURRENT_PIN "Enter current PIN:"
 #define DEFAULT_TEXT_INSERT_NEW_PIN "Enter new PIN:"
 #define DEFAULT_TEXT_CONFIRM_NEW_PIN "Confirm new PIN:"

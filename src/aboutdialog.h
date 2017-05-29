@@ -5,6 +5,7 @@
 #include "ui_aboutdialog.h"
 #include "cardcontrolhandler.h"
 
+#define BUERGERKARTE_SW_VERSION "1.1"
 
 class AboutDialog : public QDialog {
   Q_OBJECT

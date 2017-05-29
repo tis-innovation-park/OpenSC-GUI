@@ -25,7 +25,7 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
   palette.setColor(_ui.confirmPinInfoLabel->foregroundRole(), Qt::red);
   _ui.confirmPinInfoLabel->setPalette( palette );
   
-  setWindowTitle(tr("CNS Card Control"));
+  setWindowTitle(tr("Buergerkarte"));
   setWindowIcon( QIcon(":/icons/provinz_wappen.png") );
   
   _textEdit = 0;
@@ -162,7 +162,8 @@ void MainWidget::setupTrayIcon() {
   _openAction = new QAction(tr("&Open..."), this);
   connect(_openAction, SIGNAL(triggered()), this, SLOT(openActionTriggered()));
   _aboutAction = new QAction(tr("&About..."), this);
-  connect(_aboutAction, SIGNAL(triggered()), this, SLOT(openAboutDialogTriggered())); 
+  connect(_aboutAction, SIGNAL(triggered()), this, SLOT(openAboutDialogTriggered()));
+//  connect(_aboutAction, SIGNAL(triggered()), this, SLOT(aboutDialogActionTriggered()));
   _quitAction = new QAction(tr("&Quit"), this);
   connect(_quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
   _enableDebugViewAction = new QAction(tr("&Enable Debug View"), this);
@@ -255,7 +256,7 @@ void MainWidget::resetX509CertificationData() {
 
 
 void MainWidget::aboutDialogActionTriggered() {
-  QString aboutInfo = QString(tr("Software Version: %1\nCompile Date: %2 %3\nUsing: %4")).arg(BUERGERKATRE_SW_VERSION).arg(__DATE__).arg(__TIME__).arg(PACKAGE_STRING);
+  QString aboutInfo = QString(tr("Software Version: %1\nCompile Date: %2 %3\nUsing: %4")).arg(BUERGERKARTE_SW_VERSION).arg(__DATE__).arg(__TIME__).arg(PACKAGE_STRING);
   _trayIcon->showMessage(QString(tr("About Buegerkarte")), aboutInfo, QSystemTrayIcon::Information);
 }
 

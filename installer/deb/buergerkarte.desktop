@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Buergerkarte
+Comment=A GUI application based on OpenSC used to manage the PIN/PUK on smart cards for the Autonomous Province of Bolzano, South Tyrol Italy
+Keywords=Buergerkarte;Gesundheitskarte;CNS;Carta nazionale dei servizi;
+Exec=buergerkarte
+Icon=provinz_wappen
+Terminal=false
+Type=Application
+Categories=Utility;
+StartupNotify=true
+X-Ubuntu-Gettext-Domain=buergerkarte
