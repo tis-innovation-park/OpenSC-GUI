@@ -25,7 +25,7 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
   palette.setColor(_ui.confirmPinInfoLabel->foregroundRole(), Qt::red);
   _ui.confirmPinInfoLabel->setPalette( palette );
   
-  setWindowTitle(tr("CNS Card Control"));
+  setWindowTitle(tr("Buergerkarte"));
   setWindowIcon( QIcon(":/icons/provinz_wappen.png") );
   
   _textEdit = 0;
