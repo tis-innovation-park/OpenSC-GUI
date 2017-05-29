@@ -25,11 +25,11 @@ using namespace std;
 
 #define BUERGERKATRE_SW_VERSION 1.0
 
-#define DEFAULT_TEXT_INSERT_CURRENT_PIN "Enter current Pin:"
-#define DEFAULT_TEXT_INSERT_NEW_PIN "Enter new Pin:"
-#define DEFAULT_TEXT_CONFIRM_NEW_PIN "Confirm new Pin:"
-#define DEFAULT_TEXT_CHANGE_PIN_BUTTON "Change Pin"
-#define DEFAULT_TEXT_UNBLOCK_PIN_BUTTON "Unblock Pin"
+#define DEFAULT_TEXT_INSERT_CURRENT_PIN "Enter current PIN:"
+#define DEFAULT_TEXT_INSERT_NEW_PIN "Enter new PIN:"
+#define DEFAULT_TEXT_CONFIRM_NEW_PIN "Confirm new PIN:"
+#define DEFAULT_TEXT_CHANGE_PIN_BUTTON "Change PIN"
+#define DEFAULT_TEXT_UNBLOCK_PIN_BUTTON "Unblock PIN"
 
 
 class MainWidget:public QMainWindow{
