@@ -1,13 +1,13 @@
 #!/bin/sh
 
-version="1.1"
-
 d=`dirname $0`
 cd $d
 if [ $? -ne 0 ]; then
   echo cannot cd to $d, aborting
   exit 1
 fi
+
+. ../VERSION
 
 rm -rf packages/
 
