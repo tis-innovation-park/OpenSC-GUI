@@ -1,11 +1,17 @@
 #!/bin/sh
 
-currentDir=`dirname $0`
-echo $currentDir
-cd $currentDir
-pwd 
+d=`dirname $0`
+cd $d
+if [ $? -ne 0 ]; then
+  echo cannot cd to $d, aborting
+  exit 1
+fi
 
-mkdir Build/
+. ../VERSION
+
+rm -rf Release/
+
+mkdir -p Build/
 cd Build/
 
 mkdir -p Release/Buergerkarte.app/Contents/
@@ -17,4 +23,4 @@ cp ../../../build/src/buergerkarte  Release/Buergerkarte.app/Contents/MacOS/
 cp ../../../lib/opensc/lib/mac_osx/libopensc.3.dylib Release/Buergerkarte.app/Contents/MacOS/libopensc.3.dylib
 cp ../../OpenSC_PKCS11_Module_V1.2.xpi Release/Buergerkarte.app/Contents/MacOS/
 
-pkgbuild --identifier buergerkarte.bz.it --version 1.0 --root Release/ --install-location /Applications/ "Buergerkarte for Mac OS X.pkg"
+pkgbuild --identifier buergerkarte.bz.it --version $version --root Release/ --install-location /Applications/ "Buergerkarte for Mac OS X.pkg"

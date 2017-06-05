@@ -1,0 +1,2 @@
+version=`awk '/BUERGERKARTE_SW_VERSION/ { print substr($3, 2, length($3)-2) }' ../../src/version.h`
+#version=1.1
