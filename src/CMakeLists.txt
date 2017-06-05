@@ -50,7 +50,7 @@ else()
   set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
   ADD_CUSTOM_COMMAND (
     TARGET ${PROJECT_NAME} POST_BUILD 
-    COMMAND lupdate -silent -I ../src ../src -ts ../translations//${PROJECT_NAME}.ts
+    COMMAND lupdate -silent -I ../src ../src -ts ../translations/${PROJECT_NAME}_de.ts ../translations/${PROJECT_NAME}_it.ts
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
   

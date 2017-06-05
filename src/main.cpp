@@ -1,5 +1,7 @@
 #include "mainwidget.h"
 
+#include <QTranslator>
+
 int main( int argc, char ** argv ){
   qRegisterMetaType<sc_reader_t>("sc_reader_t");
   qRegisterMetaType<sc_card_t>("sc_card_t");
@@ -10,7 +12,12 @@ int main( int argc, char ** argv ){
   qRegisterMetaType<CardControlHandler::SerialData>("CardControlHandler::SerialData");
   qRegisterMetaType<X509CertificateHandler::X509CertificateData>("X509CertificateHandler::X509CertificateData");
   
-  QApplication a( argc, argv );
+  QApplication app( argc, argv );
+
+  QTranslator translator;
+  translator.load(QLocale::system(), "buergerkarte", "_");
+  app.installTranslator(&translator);
+
   bool hideMainWin = false;
   if ( argc == 2 && string(argv[1]) == "startHidden" )
     hideMainWin = true;
@@ -19,5 +26,5 @@ int main( int argc, char ** argv ){
   if ( !hideMainWin )
     mw->show();
   
-  return a.exec();
+  return app.exec();
 }
