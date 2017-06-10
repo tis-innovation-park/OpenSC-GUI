@@ -577,6 +577,8 @@ Error CardControlHandler::getX509CertificateDatafromCard(  sc_pkcs15_card *p15ca
   }
   
   Error error = _x509CertificateHandler.getX509DataFromCertificate( *cert, &_x509Data );
+  sc_pkcs15_free_certificate(cert);
+
   if( !error.hasError() )
     emit( x509CertificateDataGathered(_x509Data) );
   return error;
