@@ -1,5 +1,4 @@
 #include "x509certificatehandler.h"
-#include <QTimer>
 
 
 X509CertificateHandler::X509CertificateHandler() {  

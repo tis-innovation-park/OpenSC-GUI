@@ -17,20 +17,11 @@ StatusBar::StatusBar( CardControlHandler* scControl ) : QStatusBar() {
   this->addPermanentWidget(_readerStatusLabel,1);
   this->addPermanentWidget(_cardStatusLabel,1);
   this->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
-  
-  connect( &_updateTimer, SIGNAL(timeout()), this, SLOT(updateStatus()));
-  _updateTimer.start(500);
 }
 
 StatusBar::~StatusBar() {
   delete _readerStatusLabel;
   delete _cardStatusLabel;
-}
-
-
-
-void StatusBar::updateStatus() {
-  
 }
 
 void StatusBar::cardReaderWasConnected(sc_reader_t scReader) {
