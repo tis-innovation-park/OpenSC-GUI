@@ -95,7 +95,7 @@ class CardControlHandler : public QObject {
     
     QMutex _ccMutex;
     
-    Error intitScContext();
+    Error initScContext();
     Error connectCard( bool waitForCard = true );
     Error connectReader( bool waitForReader = true );
     Error verifyCurrentSmartCard();
