@@ -77,20 +77,10 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
   _scControl->moveToThread( _scThread );
   connect(_scThread, SIGNAL(started()), _scControl, SLOT(startPolling()));
   _scThread->start();
-
-  _logo = new QPixmap(":/icons/logo.png");
-  _ui.logoLabel->setPixmap(*_logo);
-  _ui.logoLabel->show();
-  _ui.logoLabel->setScaledContents(true);
-  _logosize = QSize(1094, 556);
-  _logosize /= 3.0;
-  _ui.logoLabel->setMinimumSize( _logosize );
-  _ui.logoLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
   
   _ui.changePasswordButton->setText( tr("&Change PIN") );
 
-  this->setFixedSize(_logosize.width() + 110, _logosize.height() + 300);
-  
+  this->setFixedSize(_ui.logoLabel->minimumSize().width() + 110, _ui.logoLabel->minimumSize().height() + 300);
 }
 
 
@@ -103,7 +93,6 @@ MainWidget::~MainWidget() {
   delete _textEdit;
   delete _scThread;
   delete _scControl;
-  delete _logo;
   if ( _firefoxProcess )
     delete _firefoxProcess;
 }
