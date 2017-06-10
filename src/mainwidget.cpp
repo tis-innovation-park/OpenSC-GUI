@@ -13,7 +13,6 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
   _firefoxProcess = 0;
   
   _aboutDialog = new AboutDialog(this);
-  _aboutDialog->close();
   
   QPalette palette = _ui.newPinInfoLabel->palette();
   palette.setColor(_ui.newPinInfoLabel->foregroundRole(), Qt::red);
@@ -41,7 +40,6 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
 
   _textEdit = new QTextEdit();
   logger().setLogWidget( _textEdit );
-  _textEdit->hide();
   _textEdit->setWindowTitle(tr("Buergerkarte Debug Window") );
   
   setupTrayIcon();
