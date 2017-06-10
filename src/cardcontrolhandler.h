@@ -74,8 +74,8 @@ class CardControlHandler : public QObject {
     
   protected:
     sc_context_t *_scCtxt;
-    sc_card_t *_scCard;
     sc_reader_t *_scReader;
+    sc_card_t *_scCard;
 
     void timerEvent(QTimerEvent *event);
     
@@ -100,6 +100,7 @@ class CardControlHandler : public QObject {
     Error connectReader( bool waitForReader = true );
     Error verifyCurrentSmartCard();
     Error verifyCurrentCardReader();
+    Error cleanupScContext();
     Error cleanupSmartCard();
     Error gatherPkcs15PinInfo();
     

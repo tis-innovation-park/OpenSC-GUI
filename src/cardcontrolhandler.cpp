@@ -14,7 +14,13 @@ CardControlHandler::CardControlHandler() {
 
 
 CardControlHandler::~CardControlHandler() {
+  cleanupSmartCard();
+  cleanupScContext();
 
+  // security
+  resetPersonalData();
+  resetSerialData();
+  resetX509CertificationData();
 }
 
 
@@ -73,14 +79,8 @@ void CardControlHandler::unblockPinPkcs15Request( const char *puk, const char *n
 
 
 Error CardControlHandler::initScContext() {
-  if( _scCard ) {
-    sc_disconnect_card( _scCard );
-    _scCard = NULL;
-  }
-  if( _scCtxt ) {
-    sc_release_context( _scCtxt );
-    _scCtxt = NULL;
-  }
+  cleanupSmartCard();
+  cleanupScContext();
   
   sc_context_param_t ctxParam;
   memset(&ctxParam, 0, sizeof(ctxParam));
@@ -122,7 +122,7 @@ Error CardControlHandler::connectCard( bool waitForCard ) {
   logger().log("Connecting to card in reader %s...\n", _scReader->name);
   err = sc_connect_card(_scReader, &_scCard);
   if( err ) {
-    _scCard = 0;
+    _scCard = NULL;
     return Error( err, "Failed to connect to card: %s\n", sc_strerror(err) );
   }
 
@@ -131,7 +131,7 @@ Error CardControlHandler::connectCard( bool waitForCard ) {
   err = sc_lock(_scCard);
   if (err) {
     sc_disconnect_card(_scCard);
-    _scCard = 0;
+    _scCard = NULL;
     return Error( err, "Failed to lock card: %s\n", sc_strerror(err));
   }
   
@@ -225,24 +225,34 @@ Error CardControlHandler::verifyCurrentCardReader() {
 
   if( sc_ctx_detect_readers( _scCtxt ) == SC_ERROR_NO_READERS_FOUND || sc_ctx_get_reader_count( _scCtxt ) == 0 || !sc_ctx_get_reader_by_name( _scCtxt, _scReader->name ) ) { 
     logger().log("Reader %s has been removed\n", _scReader->name);
-    if( _scCard )
-      cleanupSmartCard(); 
-    
+
     emit(cardReaderRemoved( *_scReader ));
     resetPersonalData();
-    _scReader = 0;
-    sc_release_context( _scCtxt );
-    _scCtxt = 0;
+
+    cleanupSmartCard();
+    _scReader = NULL;
+    cleanupScContext();
     return Error(SC_ERROR_NO_READERS_FOUND);
   }
   return SC_SUCCESS;
 }
 
 
+Error CardControlHandler::cleanupScContext() {
+  if (_scCtxt) {
+    sc_release_context( _scCtxt );
+  }
+  _scCtxt = NULL;
+  return SC_SUCCESS;
+}
+
+
 Error CardControlHandler::cleanupSmartCard() {
-  sc_unlock( _scCard );
-  sc_disconnect_card( _scCard );
-  _scCard = 0;
+  if (_scCard) {
+    sc_unlock( _scCard );
+    sc_disconnect_card( _scCard );
+  }
+  _scCard = NULL;
   return SC_SUCCESS;
 }
 
