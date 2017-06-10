@@ -1,8 +1,6 @@
 #ifndef X509_CERTIFICATE_HANDLER_H
 #define X509_CERTIFICATE_HANDLER_H
 
-#include <QTimer>
-
 #include <iostream>
 
 #include "error.h"
@@ -44,7 +42,7 @@ class X509CertificateHandler {
     Error getX509DataFromCertificate( const sc_pkcs15_cert_t& cert, X509CertificateData* certData );
     
   private:
-    void handleEntry(const X509_NAME_ENTRY* entry, X509CertificateData* certData );
+    void handleEntry(X509_NAME_ENTRY* entry, X509CertificateData* certData );
     Error parseTimeTFromASN1Time(const ASN1_TIME* time, time_t *timeOut);
 };
 

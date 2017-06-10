@@ -468,10 +468,6 @@ Durch: %4</translation>
         <translation></translation>
     </message>
     <message>
-        <source>Logo</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>[Min:%1  Max:%2]</source>
         <translation></translation>
     </message>

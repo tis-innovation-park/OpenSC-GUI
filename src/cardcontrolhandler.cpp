@@ -1,5 +1,4 @@
 #include "cardcontrolhandler.h"
-#include <QTimer>
 
 
 CardControlHandler::CardControlHandler() {  
@@ -8,8 +7,6 @@ CardControlHandler::CardControlHandler() {
   _scCtxt = NULL;
   memset( &_pkcs15ChangePinContext, 0 , sizeof(struct Pkcs15ChangePinContext) );
   memset( &_pkcs15UnblockPinContext, 0 , sizeof(struct Pkcs15UnblockPinContext) );
-  _timer.setParent(this);
-  connect( &_timer, SIGNAL(timeout()), this, SLOT( poll() ) ); 
   resetPersonalData();
   resetSerialData();
   resetX509CertificationData();
@@ -17,12 +14,18 @@ CardControlHandler::CardControlHandler() {
 
 
 CardControlHandler::~CardControlHandler() {
+  cleanupSmartCard();
+  cleanupScContext();
 
+  // security
+  resetPersonalData();
+  resetSerialData();
+  resetX509CertificationData();
 }
 
 
 Error CardControlHandler::init() {
-  Error err = intitScContext();
+  Error err = initScContext();
   if(err.hasError()) 
     return err;
       
@@ -75,20 +78,14 @@ void CardControlHandler::unblockPinPkcs15Request( const char *puk, const char *n
 ////////////////////////////// private  ////////////////////////////////////////
 
 
-Error CardControlHandler::intitScContext() {
-  if( _scCard ) {
-    sc_disconnect_card( _scCard );
-    _scCard = NULL;
-  }
-  if( _scCtxt ) {
-    sc_release_context( _scCtxt );
-    _scCtxt = NULL;
-  }
+Error CardControlHandler::initScContext() {
+  cleanupSmartCard();
+  cleanupScContext();
   
   sc_context_param_t ctxParam;
   memset(&ctxParam, 0, sizeof(ctxParam));
   ctxParam.ver      = 0;
-  ctxParam.app_name = "BuergerKarte";
+  ctxParam.app_name = "Buergerkarte";
 
   int err = sc_context_create(&_scCtxt, &ctxParam);
   if (err) {
@@ -100,7 +97,7 @@ Error CardControlHandler::intitScContext() {
 
 Error CardControlHandler::connectCard( bool waitForCard ) {
   Error error;
-  if( !_scCtxt && !(error = intitScContext()) ) {
+  if( !_scCtxt && !(error = initScContext()) ) {
     return error;
   }
   
@@ -125,7 +122,7 @@ Error CardControlHandler::connectCard( bool waitForCard ) {
   logger().log("Connecting to card in reader %s...\n", _scReader->name);
   err = sc_connect_card(_scReader, &_scCard);
   if( err ) {
-    _scCard = 0;
+    _scCard = NULL;
     return Error( err, "Failed to connect to card: %s\n", sc_strerror(err) );
   }
 
@@ -134,7 +131,7 @@ Error CardControlHandler::connectCard( bool waitForCard ) {
   err = sc_lock(_scCard);
   if (err) {
     sc_disconnect_card(_scCard);
-    _scCard = 0;
+    _scCard = NULL;
     return Error( err, "Failed to lock card: %s\n", sc_strerror(err));
   }
   
@@ -186,7 +183,7 @@ Error CardControlHandler::connectReader( bool waitForReader ) {
   
   _scReader = foundReader;  
   if ( !_scReader ) {
-    return Error( SC_ERROR_NO_READERS_FOUND, "No valid readers found (%d reader(s) detected)\n", sc_ctx_get_reader_count(_scCtxt) );
+    return Error( SC_ERROR_NO_READERS_FOUND, "No valid readers found (%u reader(s) detected)\n", sc_ctx_get_reader_count(_scCtxt) );
   }
   
   emit( cardReaderConnected( *_scReader) );
@@ -228,24 +225,34 @@ Error CardControlHandler::verifyCurrentCardReader() {
 
   if( sc_ctx_detect_readers( _scCtxt ) == SC_ERROR_NO_READERS_FOUND || sc_ctx_get_reader_count( _scCtxt ) == 0 || !sc_ctx_get_reader_by_name( _scCtxt, _scReader->name ) ) { 
     logger().log("Reader %s has been removed\n", _scReader->name);
-    if( _scCard )
-      cleanupSmartCard(); 
-    
+
     emit(cardReaderRemoved( *_scReader ));
     resetPersonalData();
-    _scReader = 0;
-    sc_release_context( _scCtxt );
-    _scCtxt = 0;
+
+    cleanupSmartCard();
+    _scReader = NULL;
+    cleanupScContext();
     return Error(SC_ERROR_NO_READERS_FOUND);
   }
   return SC_SUCCESS;
 }
 
 
+Error CardControlHandler::cleanupScContext() {
+  if (_scCtxt) {
+    sc_release_context( _scCtxt );
+  }
+  _scCtxt = NULL;
+  return SC_SUCCESS;
+}
+
+
 Error CardControlHandler::cleanupSmartCard() {
-  sc_unlock( _scCard );
-  sc_disconnect_card( _scCard );
-  _scCard = 0;
+  if (_scCard) {
+    sc_unlock( _scCard );
+    sc_disconnect_card( _scCard );
+  }
+  _scCard = NULL;
   return SC_SUCCESS;
 }
 
@@ -479,8 +486,10 @@ Error CardControlHandler::getPersonalDatafromCard( sc_pkcs15_card *p15card ) {
     unsigned int tlv_length_size = 6;
     char *fileData = (char*) &buff[tlv_length_size];
     int fileSize = hexToInt( (char*)buff, tlv_length_size);
-    if(fileSize < 0)
+    if(fileSize < 0) {
+      sc_pkcs15_free_data_object(data_object);
       return Error( SC_ERROR_INVALID_DATA, "Personal Data file has invalid size %d.\n", fileSize);
+    }
     
     //Just to make sure we are not exceeding max data size
     if( fileSize > (int) personalDataMaxLen - (int) tlv_length_size )
@@ -493,27 +502,35 @@ Error CardControlHandler::getPersonalDatafromCard( sc_pkcs15_card *p15card ) {
       int fieldSize;
       
       /* Don't read beyond the allocated buffer */
-      if(characterOffset > fileSize) 
+      if(characterOffset > fileSize) {
+        sc_pkcs15_free_data_object(data_object);
         return Error( SC_ERROR_INVALID_DATA, "Max File Size exceeded while gathering personal data\n");
+      }
 
       fieldSize = hexToInt( (char*) &fileData[characterOffset], 2);
-      if((fieldSize < 0) || (fieldSize + characterOffset > fileSize))
+      if((fieldSize < 0) || (fieldSize + characterOffset > fileSize)) {
+        sc_pkcs15_free_data_object(data_object);
         return Error( SC_ERROR_INVALID_DATA, "Invalid Field Size detected while gathering personal data\n");
+      }
 
       characterOffset += 2;
 
-      if(fieldSize >= (int) sizeof( _personalData.dataFields[fieldNr].value) )
+      if(fieldSize >= (int) sizeof( _personalData.dataFields[fieldNr].value) ) {
+        sc_pkcs15_free_data_object(data_object);
         return Error( SC_ERROR_INVALID_DATA, "Field Size exceeds max defined field size\n");
+      }
 
       _personalData.dataFields[fieldNr].len = fieldSize;
       strncpy(_personalData.dataFields[fieldNr].value, &fileData[characterOffset], fieldSize);
       _personalData.dataFields[fieldNr].value[fieldSize] = '\0';
+
 //       logger().log("%s\n",_personalData.dataFields[fieldNr].value);
       characterOffset += fieldSize;
     }
+    sc_pkcs15_free_data_object(data_object);
+
     _personalData.isValid = true;
     emit(personalDataGathered( _personalData ));
-    sc_pkcs15_free_data_object(data_object);
     return SC_SUCCESS;
   }
   
@@ -532,7 +549,7 @@ Error CardControlHandler::getSerialDatafromCard( sc_pkcs15_card* p15card) {
   sc_format_path(serialPath.c_str(), &scPath);
   bytes = readDataFromFile(p15card, &scPath, serial, CARD_SERIAL_LENGTH);
   if( bytes < 0 || bytes > CARD_SERIAL_LENGTH ) 
-    return Error( SC_ERROR_INVALID_DATA, "Inavlid number of bytes have been read %d\n", bytes);  
+    return Error( SC_ERROR_INVALID_DATA, "Invalid number of bytes have been read %d\n", bytes);
   serial[bytes] = '\0';
   
   strncpy( _serialData.serial, (const char*) serial, sizeof(_serialData.serial) );
@@ -580,6 +597,8 @@ Error CardControlHandler::getX509CertificateDatafromCard(  sc_pkcs15_card *p15ca
   }
   
   Error error = _x509CertificateHandler.getX509DataFromCertificate( *cert, &_x509Data );
+  sc_pkcs15_free_certificate(cert);
+
   if( !error.hasError() )
     emit( x509CertificateDataGathered(_x509Data) );
   return error;
@@ -631,8 +650,9 @@ void CardControlHandler::resetX509CertificationData() {
 ////////////////////////////// slots  ////////////////////////////////////////
 
 
-void CardControlHandler::poll() { 
-  //_timer.stop();
+void CardControlHandler::timerEvent(QTimerEvent *event) {
+  Q_UNUSED(event)
+
   if( !_scCard ) {
     connectCard( true );
   }
@@ -662,7 +682,6 @@ void CardControlHandler::poll() {
 //     free(_pkcs15ChangePinContext.oldPin);
     emit(pksc15PinChangeDone(err));
   }
-  //_timer.start( 250 );
 }
 
 

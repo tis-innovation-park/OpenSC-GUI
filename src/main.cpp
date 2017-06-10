@@ -1,5 +1,6 @@
 #include "mainwidget.h"
 
+#include <QApplication>
 #include <QTranslator>
 
 int main( int argc, char ** argv ){
@@ -11,7 +12,7 @@ int main( int argc, char ** argv ){
   qRegisterMetaType<CardControlHandler::PersonalData>("CardControlHandler::PersonalData");
   qRegisterMetaType<CardControlHandler::SerialData>("CardControlHandler::SerialData");
   qRegisterMetaType<X509CertificateHandler::X509CertificateData>("X509CertificateHandler::X509CertificateData");
-  
+
   QApplication app( argc, argv );
 
   QTranslator translator;
@@ -21,10 +22,10 @@ int main( int argc, char ** argv ){
   bool hideMainWin = false;
   if ( argc == 2 && string(argv[1]) == "startHidden" )
     hideMainWin = true;
-  
-  MainWidget* mw = new MainWidget();
+
+  MainWidget mw;
   if ( !hideMainWin )
-    mw->show();
-  
+    mw.show();
+
   return app.exec();
 }

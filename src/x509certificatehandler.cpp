@@ -1,5 +1,4 @@
 #include "x509certificatehandler.h"
-#include <QTimer>
 
 
 X509CertificateHandler::X509CertificateHandler() {  
@@ -13,12 +12,10 @@ X509CertificateHandler::~X509CertificateHandler() {
 Error X509CertificateHandler::getX509DataFromCertificate(const sc_pkcs15_cert_t& cert, X509CertificateHandler::X509CertificateData* certData) {
   memset( certData, 0 , sizeof(X509CertificateHandler::X509CertificateData) );
   const u8 *encodedData = cert.data.value;
-  X509 *x509Cert = 0;
 
-  x509Cert = d2i_X509(NULL, &encodedData, cert.data.len);
+  X509 *x509Cert = d2i_X509(NULL, &encodedData, cert.data.len);
   if( !x509Cert ) 
     return Error( SC_ERROR_OBJECT_NOT_VALID, "Could convert X509 certificate via openssl\n");
-  
  
   //Gather Issuer Data
   int length = X509_NAME_entry_count( x509Cert->cert_info->issuer );
@@ -27,7 +24,6 @@ Error X509CertificateHandler::getX509DataFromCertificate(const sc_pkcs15_cert_t&
     handleEntry( entry, certData );
   }
   
-  
   //Gather Serial Data
   BIGNUM *bn = ASN1_INTEGER_to_BN(x509Cert->cert_info->serialNumber, NULL);
   char *hex = BN_bn2hex(bn);
@@ -35,8 +31,7 @@ Error X509CertificateHandler::getX509DataFromCertificate(const sc_pkcs15_cert_t&
   BN_free(bn);
   OPENSSL_free(hex);
   //cout<<"SERIAL DATA"<<certData->serialNumber<<endl;
-  
-  
+
   //Gather Validity Data
 //   cout<<"TIME 1: "<<x509Cert->cert_info->validity->notBefore->data<<endl;
 //   cout<<"TIME 2: "<<x509Cert->cert_info->validity->notAfter->data<<endl;
@@ -44,18 +39,19 @@ Error X509CertificateHandler::getX509DataFromCertificate(const sc_pkcs15_cert_t&
   parseTimeTFromASN1Time(x509Cert->cert_info->validity->notAfter, &certData->validity.notAfter );
 //   printf ("Before time is: %s", ctime (&certData->validity.notBefore));
 //   printf ("After time is: %s", ctime (&certData->validity.notAfter));
-  
+
+  X509_free(x509Cert);
   certData->isValid = true;
   return SC_SUCCESS;
 }
 
 
-void X509CertificateHandler::handleEntry(const X509_NAME_ENTRY* entry, X509CertificateHandler::X509CertificateData* certData) {
-  ASN1_OBJECT* entryObject = X509_NAME_ENTRY_get_object( (X509_NAME_ENTRY*)  entry );
+void X509CertificateHandler::handleEntry(X509_NAME_ENTRY* entry, X509CertificateHandler::X509CertificateData* certData) {
+  ASN1_OBJECT* entryObject = X509_NAME_ENTRY_get_object( entry );
     
   char buff[256];
   OBJ_obj2txt(buff, 255, entryObject, 0);
-  unsigned char* value = ASN1_STRING_data(X509_NAME_ENTRY_get_data( (X509_NAME_ENTRY*) entry ) );
+  unsigned char* value = ASN1_STRING_data(X509_NAME_ENTRY_get_data( entry ));
   cout<<"Entry: "<<buff<<"    Value: "<<value<<endl;
   
   string entryName = buff;

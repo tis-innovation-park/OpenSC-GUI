@@ -67,7 +67,6 @@ class MainWidget:public QMainWindow{
     void resetX509CertificationData();
     
     Ui_MainWidget _ui;  //Graphical User Interface
-    QPixmap *_logo;     //Logo displayed on top of the GUI
     AboutDialog *_aboutDialog;
   
     CardControlHandler *_scControl; //Handles access and operations on the smart card and the smart card reader
@@ -93,7 +92,6 @@ class MainWidget:public QMainWindow{
     // Status
     StatusBar *_statusBar;      //Bar showing brief status information about the card reader / smart card
     QTextEdit *_textEdit;       //A Textfield to show Debug information
-    QSize _logosize;
     
     QProcess *_firefoxProcess;
    

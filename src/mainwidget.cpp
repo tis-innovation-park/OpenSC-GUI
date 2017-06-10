@@ -13,7 +13,6 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
   _firefoxProcess = 0;
   
   _aboutDialog = new AboutDialog(this);
-  _aboutDialog->close();
   
   QPalette palette = _ui.newPinInfoLabel->palette();
   palette.setColor(_ui.newPinInfoLabel->foregroundRole(), Qt::red);
@@ -41,7 +40,6 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
 
   _textEdit = new QTextEdit();
   logger().setLogWidget( _textEdit );
-  _textEdit->hide();
   _textEdit->setWindowTitle(tr("Buergerkarte Debug Window") );
   
   setupTrayIcon();
@@ -77,32 +75,24 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
      _ui.passwordWidget->setEnabled( true );
   
   _scControl->moveToThread( _scThread );
-  _scThread->start();  
-  QMetaObject::invokeMethod(_scControl, "startPolling", Qt::QueuedConnection);
-
-  _logo = new QPixmap(":/icons/logo.png");
-  _ui.logoLabel->setPixmap(*_logo);
-  _ui.logoLabel->show();
-  _ui.logoLabel->setScaledContents(true);
-  _logosize = QSize(1094, 556);
-  _logosize /= 3.0;
-  _ui.logoLabel->setMinimumSize( _logosize );
-  _ui.logoLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+  connect(_scThread, SIGNAL(started()), _scControl, SLOT(startPolling()));
+  _scThread->start();
   
   _ui.changePasswordButton->setText( tr("&Change PIN") );
 
-  this->setFixedSize(_logosize.width() + 110, _logosize.height() + 300);
-  
+  this->setFixedSize(_ui.logoLabel->minimumSize().width() + 110, _ui.logoLabel->minimumSize().height() + 300);
 }
 
 
 MainWidget::~MainWidget() {
   logger().setLogWidget( 0 );
+
   _scThread->quit();
   _scThread->wait();
+
+  delete _textEdit;
   delete _scThread;
   delete _scControl;
-  delete _logo;
   if ( _firefoxProcess )
     delete _firefoxProcess;
 }

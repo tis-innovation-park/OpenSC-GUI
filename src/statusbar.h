@@ -13,13 +13,11 @@ class StatusBar: public QStatusBar {
     StatusBar( CardControlHandler* scControl);
     ~StatusBar();
 
-  private:    
-    QTimer _updateTimer;
+  private:
     QLabel *_readerStatusLabel, *_cardStatusLabel;
     CardControlHandler* _scControl;
   
   public slots:
-    void updateStatus();
     void cardReaderWasConnected( sc_reader_t scReader );
     void smartCardWasConnected( sc_card_t scCard );
     void cardReaderWasRemoved();
