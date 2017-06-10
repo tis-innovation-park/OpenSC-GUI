@@ -77,8 +77,8 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
      _ui.passwordWidget->setEnabled( true );
   
   _scControl->moveToThread( _scThread );
-  _scThread->start();  
-  QMetaObject::invokeMethod(_scControl, "startPolling", Qt::QueuedConnection);
+  connect(_scThread, SIGNAL(started()), _scControl, SLOT(startPolling()));
+  _scThread->start();
 
   _logo = new QPixmap(":/icons/logo.png");
   _ui.logoLabel->setPixmap(*_logo);
@@ -98,8 +98,11 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
 
 MainWidget::~MainWidget() {
   logger().setLogWidget( 0 );
+
   _scThread->quit();
   _scThread->wait();
+
+  delete _textEdit;
   delete _scThread;
   delete _scControl;
   delete _logo;

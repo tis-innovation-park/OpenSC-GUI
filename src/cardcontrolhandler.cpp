@@ -1,5 +1,4 @@
 #include "cardcontrolhandler.h"
-#include <QTimer>
 
 
 CardControlHandler::CardControlHandler() {  
@@ -8,8 +7,6 @@ CardControlHandler::CardControlHandler() {
   _scCtxt = NULL;
   memset( &_pkcs15ChangePinContext, 0 , sizeof(struct Pkcs15ChangePinContext) );
   memset( &_pkcs15UnblockPinContext, 0 , sizeof(struct Pkcs15UnblockPinContext) );
-  _timer.setParent(this);
-  connect( &_timer, SIGNAL(timeout()), this, SLOT( poll() ) ); 
   resetPersonalData();
   resetSerialData();
   resetX509CertificationData();
@@ -631,8 +628,9 @@ void CardControlHandler::resetX509CertificationData() {
 ////////////////////////////// slots  ////////////////////////////////////////
 
 
-void CardControlHandler::poll() { 
-  //_timer.stop();
+void CardControlHandler::timerEvent(QTimerEvent *event) {
+  Q_UNUSED(event)
+
   if( !_scCard ) {
     connectCard( true );
   }
@@ -662,7 +660,6 @@ void CardControlHandler::poll() {
 //     free(_pkcs15ChangePinContext.oldPin);
     emit(pksc15PinChangeDone(err));
   }
-  //_timer.start( 250 );
 }
 
 

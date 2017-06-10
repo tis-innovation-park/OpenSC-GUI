@@ -1,8 +1,6 @@
 #ifndef CARD_CONTROL_HANDLER_H
 #define CARD_CONTROL_HANDLER_H
 
-#include <QTimer>
-
 #include <iostream>
 
 #include "error.h"
@@ -17,6 +15,8 @@ using namespace std;
 
 #define CARD_SERIAL_LENGTH 16
 #define CARD_SERIAL_PATH "10001003"
+
+#define POLLING_INTERVAL 250
 
 
 class CardControlHandler : public QObject {
@@ -76,6 +76,8 @@ class CardControlHandler : public QObject {
     sc_context_t *_scCtxt;
     sc_card_t *_scCard;
     sc_reader_t *_scReader;
+
+    void timerEvent(QTimerEvent *event);
     
   private:
     struct Pkcs15ChangePinContext {
@@ -93,7 +95,6 @@ class CardControlHandler : public QObject {
     
     QMutex _ccMutex;
     
-    QTimer _timer;
     Error intitScContext();
     Error connectCard( bool waitForCard = true );
     Error connectReader( bool waitForReader = true );
@@ -126,11 +127,8 @@ class CardControlHandler : public QObject {
     void resetX509CertificationData();
     
   public slots:
-    void startPolling() { _timer.start(250); }
-    
-  private slots: 
-    void poll();
-    
+    void startPolling() { startTimer(POLLING_INTERVAL); }
+
   signals:
     void cardReaderConnected( sc_reader_t scReader );
     void smartCardConnected( sc_card_t scCard );
