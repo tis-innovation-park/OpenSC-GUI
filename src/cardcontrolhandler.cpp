@@ -25,10 +25,6 @@ CardControlHandler::~CardControlHandler() {
 
 
 Error CardControlHandler::init() {
-  Error err = initScContext();
-  if(err.hasError()) 
-    return err;
-      
   return connectCard( false );
 }
 
