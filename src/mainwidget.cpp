@@ -71,7 +71,7 @@ MainWidget::MainWidget(QWidget *parent) : QMainWindow(parent) {
   connect( _ui.confirmPasswordLineEdit, SIGNAL(textChanged(QString)), this, SLOT(confirmNewPinTextChanged(QString)));
   
   //Initializing SmartCard Control Handler
-  if( _scControl->init() ) 
+  if( _scControl->init() )
      _ui.passwordWidget->setEnabled( true );
   
   _scControl->moveToThread( _scThread );
@@ -583,7 +583,7 @@ void MainWidget::updateFirefoxActionTriggered(){
 #else
   QString command = QString("/Applications/Firefox.app/Contents/MacOS/firefox-bin /Applications/Buergerkarte.app/Contents/MacOS/OpenSC_PKCS11_Module_V1.2.xpi");
 #endif
-  logger().log("starting firefox updater command: %s\n", command.toStdString().c_str() );
+  logger().log("starting firefox updater command: %s\n", command.toLocal8Bit());
 //   QMessageBox::information(this, "", command );
   _firefoxProcess->start(command);
 }

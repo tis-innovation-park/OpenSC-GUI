@@ -24,8 +24,9 @@ CardControlHandler::~CardControlHandler() {
 }
 
 
-Error CardControlHandler::init() {
-  return connectCard( false );
+bool CardControlHandler::init() {
+  Error err = connectCard( false );
+  return !err.hasError();
 }
 
 

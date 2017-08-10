@@ -13,17 +13,16 @@ class Error{
     Error();
     Error(SCError errorCode);
     Error(SCError errorCode, const char *mess, ...);
-    Error(const Error&);
-    virtual ~Error();
 
-    bool hasError(){ return _scError != SC_SUCCESS; }
-    bool operator !()const{ return _scError != SC_SUCCESS; }
-    bool operator ==(SCError errorCode)const{ return _scError == errorCode; }
-    bool operator !=(SCError errorCode)const{ return _scError != errorCode; }
-    operator const void*()const;
+    bool hasError() const { return _scError != SC_SUCCESS; }
+    bool operator!() const { return hasError(); }
+
+    bool operator==(const SCError errorCode) const { return _scError == errorCode; }
+    bool operator!=(const SCError errorCode) const { return _scError != errorCode; }
     
     SCError scError(){ return _scError; }
     string getErrorText() { return _errorText; }
+
   private:
     SCError _scError;
     string _errorText;

@@ -1,12 +1,12 @@
 #include "logger.h"
 
+#include <QByteArray>
+
 Logger& logger(){
   static Logger logger;
   return logger;
 }
  
-
-
  
 Logger::Logger() {
   _logTextEdit = 0;
@@ -15,18 +15,18 @@ Logger::Logger() {
 
 void Logger::log(const char *mess, ... ) {
   QMutexLocker ml( &_loggerMutex );
-  va_list args;
-  va_start( args, mess);
-  char str[4096];
-  vsprintf(str, mess, args);
-  va_end (args);
-  string mess_str = string(str);
-  printf("%s\n", str);
-  
-  if( _logTextEdit )
-    emit(loggingRequest( QString(str) ));
-}
 
+  va_list args;
+  va_start(args, mess);
+  char str[1024];
+  qvsnprintf(str, sizeof(str), mess, args);
+  str[sizeof(str)-1] = '\0';
+  va_end(args);
+
+  printf("%s\n", str);
+  if( _logTextEdit )
+    emit(loggingRequest( QString::fromLocal8Bit(str) ));
+}
 
 
 void Logger::setLogWidget( QTextEdit *textedit ) { 
