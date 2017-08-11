@@ -5,11 +5,8 @@ CardControlHandler::CardControlHandler() {
   _scCard = NULL;
   _scReader = NULL;
   _scCtxt = NULL;
-  memset( &_pkcs15ChangePinContext, 0 , sizeof(struct Pkcs15ChangePinContext) );
-  memset( &_pkcs15UnblockPinContext, 0 , sizeof(struct Pkcs15UnblockPinContext) );
-  resetPersonalData();
-  resetSerialData();
-  resetX509CertificationData();
+
+  resetAll(false);
 }
 
 
@@ -17,10 +14,8 @@ CardControlHandler::~CardControlHandler() {
   cleanupSmartCard();
   cleanupScContext();
 
-  // security
-  resetPersonalData();
-  resetSerialData();
-  resetX509CertificationData();
+  // for security
+  resetAll();
 }
 
 
@@ -39,15 +34,7 @@ void CardControlHandler::cancel()
 
 void CardControlHandler::changePinPkcs15Request( const char *oldpin, const char *newpin ) {
   QMutexLocker ml( &_ccMutex );
-  if( _pkcs15ChangePinContext.oldPin ) {
-    free( _pkcs15ChangePinContext.oldPin  );
-    _pkcs15ChangePinContext.oldPin = 0;
-  }
-  
-  if( _pkcs15ChangePinContext.newPin ) {
-    free( _pkcs15ChangePinContext.newPin  );
-    _pkcs15ChangePinContext.newPin = 0;
-  }
+  resetPkcs15ChangePinContext();
   
   _pkcs15ChangePinContext.pinChangeRequested = true;
   _pkcs15ChangePinContext.oldPin = (u8 *) strdup(oldpin);
@@ -57,16 +44,8 @@ void CardControlHandler::changePinPkcs15Request( const char *oldpin, const char 
 
 void CardControlHandler::unblockPinPkcs15Request( const char *puk, const char *newpin ) {
   QMutexLocker ml( &_ccMutex );
-  if( _pkcs15UnblockPinContext.puk ) {
-    free( _pkcs15UnblockPinContext.puk  );
-    _pkcs15UnblockPinContext.puk = 0;
-  }
-  
-  if( _pkcs15UnblockPinContext.newPin ) {
-    free( _pkcs15UnblockPinContext.newPin  );
-    _pkcs15UnblockPinContext.newPin = 0;
-  }
-  
+  resetPkcs15UnblockPinContext();
+
   _pkcs15UnblockPinContext.pinUnblockRequested = true;
   _pkcs15UnblockPinContext.puk = (u8 *) strdup(puk);
   _pkcs15UnblockPinContext.newPin = (u8 *) strdup(newpin);
@@ -651,6 +630,40 @@ void CardControlHandler::resetX509CertificationData() {
   memset( &_x509Data, 0 , sizeof(X509CertificateHandler::X509CertificateData) );
 }
 
+void CardControlHandler::resetPkcs15ChangePinContext(bool dealloc) {
+  Pkcs15ChangePinContext& context = _pkcs15ChangePinContext;
+  if (dealloc) {
+      if (context.oldPin)
+          memset(context.oldPin, '\0', strlen((const char*)context.oldPin));
+      if (context.newPin)
+          memset(context.newPin, '\0', strlen((const char*)context.newPin));
+      free( context.oldPin  );
+      free( context.newPin  );
+  }
+  memset( &context, 0 , sizeof(struct Pkcs15ChangePinContext) );
+}
+
+void CardControlHandler::resetPkcs15UnblockPinContext(bool dealloc) {
+  Pkcs15UnblockPinContext& context = _pkcs15UnblockPinContext;
+  if (dealloc) {
+      if (context.puk)
+          memset(context.puk, '\0', strlen((const char*)context.puk));
+      if (context.newPin)
+          memset(context.newPin, '\0', strlen((const char*)context.newPin));
+      free( context.puk  );
+      free( context.newPin  );
+  }
+  memset( &context, 0 , sizeof(struct Pkcs15UnblockPinContext) );
+}
+
+void CardControlHandler::resetAll(bool dealloc) {
+  resetPersonalData();
+  resetSerialData();
+  resetX509CertificationData();
+  resetPkcs15ChangePinContext(dealloc);
+  resetPkcs15UnblockPinContext(dealloc);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// slots  ////////////////////////////////////////
 
@@ -670,25 +683,20 @@ void CardControlHandler::timerEvent(QTimerEvent *event) {
     verifyCurrentSmartCard();
   }
   
-  if( _pkcs15UnblockPinContext.pinUnblockRequested ) {
-    QMutexLocker ml( &_ccMutex );
-    Error err = unblockPinPkcs15( _pkcs15UnblockPinContext.puk, _pkcs15UnblockPinContext.newPin );
-    _pkcs15UnblockPinContext.pinUnblockRequested = false;
-//     free(_pkcs15UnblockPinContext.newPin);
-//     free(_pkcs15UnblockPinContext.puk);
-    emit(pksc15PinUnblockDone(err));
-  }
-  
   if( _pkcs15ChangePinContext.pinChangeRequested ) {
     QMutexLocker ml( &_ccMutex );
     Error err = changePinPkcs15( _pkcs15ChangePinContext.oldPin, _pkcs15ChangePinContext.newPin );
     _pkcs15ChangePinContext.pinChangeRequested = false;
-//     free(_pkcs15ChangePinContext.newPin);
-//     free(_pkcs15ChangePinContext.oldPin);
+    resetPkcs15ChangePinContext();
+
     emit(pksc15PinChangeDone(err));
   }
+  if( _pkcs15UnblockPinContext.pinUnblockRequested ) {
+    QMutexLocker ml( &_ccMutex );
+    Error err = unblockPinPkcs15( _pkcs15UnblockPinContext.puk, _pkcs15UnblockPinContext.newPin );
+    _pkcs15UnblockPinContext.pinUnblockRequested = false;
+    resetPkcs15UnblockPinContext();
+
+    emit(pksc15PinUnblockDone(err));
+  }
 }
-
-
-
-
