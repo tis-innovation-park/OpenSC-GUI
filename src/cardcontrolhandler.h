@@ -67,7 +67,8 @@ class CardControlHandler : public QObject {
     CardControlHandler();
     ~CardControlHandler();
 
-    Error init();
+    bool init();
+    void cancel();
     
     void changePinPkcs15Request( const char *oldpin, const char *newpin );
     void unblockPinPkcs15Request( const char *puk, const char *newpin );
@@ -115,7 +116,7 @@ class CardControlHandler : public QObject {
     
     
     int readDataFromFile(const sc_pkcs15_card_t *p15card, const sc_path_t *path, u8 *buf, const size_t buflen);
-    int hexToInt(char *src, unsigned int len);
+    int hexToInt(const char *src, unsigned int len);
     
     
     PersonalData _personalData;
