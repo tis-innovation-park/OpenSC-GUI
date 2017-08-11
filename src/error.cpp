@@ -15,6 +15,9 @@ Error::Error(SCError errorCode){
 Error::Error(SCError errorCode, const char *mess, ...) {
   _scError = errorCode;
 
+  if (errorCode == SC_ERROR_EVENT_TIMEOUT)
+    return; // program end
+
   va_list args;
   va_start(args, mess);
   char str[1024];
