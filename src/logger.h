@@ -3,6 +3,7 @@
 
 #include <fstream>
 
+#include <QObject>
 #include <QMutexLocker>
 #include <QTextEdit>
 
