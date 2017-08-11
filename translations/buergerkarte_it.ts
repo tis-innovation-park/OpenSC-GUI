@@ -313,255 +313,255 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="150"/>
+        <location filename="../src/mainwidget.cpp" line="151"/>
         <source>Mi&amp;nimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="152"/>
+        <location filename="../src/mainwidget.cpp" line="153"/>
         <source>&amp;Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="154"/>
+        <location filename="../src/mainwidget.cpp" line="155"/>
         <source>&amp;About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="157"/>
+        <location filename="../src/mainwidget.cpp" line="158"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="159"/>
-        <location filename="../src/mainwidget.cpp" line="564"/>
+        <location filename="../src/mainwidget.cpp" line="160"/>
+        <location filename="../src/mainwidget.cpp" line="565"/>
         <source>&amp;Enable Debug View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="161"/>
+        <location filename="../src/mainwidget.cpp" line="162"/>
         <source>&amp;Update Firefox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="249"/>
+        <location filename="../src/mainwidget.cpp" line="250"/>
         <source>Software Version: %1
 Compile Date: %2 %3
 Using: %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="250"/>
+        <location filename="../src/mainwidget.cpp" line="251"/>
         <source>About Buegerkarte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="261"/>
-        <location filename="../src/mainwidget.cpp" line="270"/>
-        <location filename="../src/mainwidget.cpp" line="281"/>
+        <location filename="../src/mainwidget.cpp" line="262"/>
+        <location filename="../src/mainwidget.cpp" line="271"/>
+        <location filename="../src/mainwidget.cpp" line="282"/>
         <source>Empty PIN field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="261"/>
+        <location filename="../src/mainwidget.cpp" line="262"/>
         <source>Please enter current PIN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="263"/>
-        <location filename="../src/mainwidget.cpp" line="274"/>
+        <location filename="../src/mainwidget.cpp" line="264"/>
+        <location filename="../src/mainwidget.cpp" line="275"/>
         <source>Incorrect PIN size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="263"/>
+        <location filename="../src/mainwidget.cpp" line="264"/>
         <source>Current PIN must have between %1 and %2 characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="270"/>
+        <location filename="../src/mainwidget.cpp" line="271"/>
         <source>Please enter new PIN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="274"/>
+        <location filename="../src/mainwidget.cpp" line="275"/>
         <source>New PIN must have between %1 and %2 characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="281"/>
+        <location filename="../src/mainwidget.cpp" line="282"/>
         <source>Please confirm new PIN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="286"/>
+        <location filename="../src/mainwidget.cpp" line="287"/>
         <source>PIN missmatch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="286"/>
+        <location filename="../src/mainwidget.cpp" line="287"/>
         <source>Confirmed PIN does not match new PIN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="300"/>
+        <location filename="../src/mainwidget.cpp" line="301"/>
         <source>Empty PUK field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="300"/>
+        <location filename="../src/mainwidget.cpp" line="301"/>
         <source>Please enter PUK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="303"/>
+        <location filename="../src/mainwidget.cpp" line="304"/>
         <source>Incorrect PUK size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="303"/>
+        <location filename="../src/mainwidget.cpp" line="304"/>
         <source>PUK must have between %1 and %2 characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="327"/>
+        <location filename="../src/mainwidget.cpp" line="328"/>
         <source>Card Reader was connected:
  Reader: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="328"/>
+        <location filename="../src/mainwidget.cpp" line="329"/>
         <source>Card Reader Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="334"/>
+        <location filename="../src/mainwidget.cpp" line="335"/>
         <source>Smart Card was inserted:
  Card: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="335"/>
+        <location filename="../src/mainwidget.cpp" line="336"/>
         <source>Smart Card Inserted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="342"/>
+        <location filename="../src/mainwidget.cpp" line="343"/>
         <source>Card Reader was removed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="343"/>
+        <location filename="../src/mainwidget.cpp" line="344"/>
         <source>Card Reader removed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="360"/>
+        <location filename="../src/mainwidget.cpp" line="361"/>
         <source>Smart Card was removed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="361"/>
+        <location filename="../src/mainwidget.cpp" line="362"/>
         <source>Smart Card removed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="382"/>
         <location filename="../src/mainwidget.cpp" line="383"/>
         <location filename="../src/mainwidget.cpp" line="384"/>
-        <location filename="../src/mainwidget.cpp" line="393"/>
-        <location filename="../src/mainwidget.cpp" line="412"/>
+        <location filename="../src/mainwidget.cpp" line="385"/>
+        <location filename="../src/mainwidget.cpp" line="394"/>
+        <location filename="../src/mainwidget.cpp" line="413"/>
         <source>[Min:%1  Max:%2]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="391"/>
-        <location filename="../src/mainwidget.cpp" line="409"/>
-        <location filename="../src/mainwidget.cpp" line="704"/>
+        <location filename="../src/mainwidget.cpp" line="392"/>
+        <location filename="../src/mainwidget.cpp" line="410"/>
         <location filename="../src/mainwidget.cpp" line="705"/>
         <location filename="../src/mainwidget.cpp" line="706"/>
         <location filename="../src/mainwidget.cpp" line="707"/>
         <location filename="../src/mainwidget.cpp" line="708"/>
         <location filename="../src/mainwidget.cpp" line="709"/>
+        <location filename="../src/mainwidget.cpp" line="710"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="391"/>
+        <location filename="../src/mainwidget.cpp" line="392"/>
         <source>Error changing PIN %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="398"/>
+        <location filename="../src/mainwidget.cpp" line="399"/>
         <source>PIN changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="398"/>
+        <location filename="../src/mainwidget.cpp" line="399"/>
         <source>PIN has been successfully changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="409"/>
+        <location filename="../src/mainwidget.cpp" line="410"/>
         <source>Error unblocking PIN %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="411"/>
+        <location filename="../src/mainwidget.cpp" line="412"/>
         <source>PIN unblocked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="411"/>
+        <location filename="../src/mainwidget.cpp" line="412"/>
         <source>PIN has been successfully unblocked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="452"/>
-        <location filename="../src/mainwidget.cpp" line="476"/>
-        <location filename="../src/mainwidget.cpp" line="506"/>
+        <location filename="../src/mainwidget.cpp" line="453"/>
+        <location filename="../src/mainwidget.cpp" line="477"/>
+        <location filename="../src/mainwidget.cpp" line="507"/>
         <source>PIN too short</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="454"/>
-        <location filename="../src/mainwidget.cpp" line="478"/>
-        <location filename="../src/mainwidget.cpp" line="508"/>
+        <location filename="../src/mainwidget.cpp" line="455"/>
+        <location filename="../src/mainwidget.cpp" line="479"/>
+        <location filename="../src/mainwidget.cpp" line="509"/>
         <source>PIN too long</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="567"/>
+        <location filename="../src/mainwidget.cpp" line="568"/>
         <source>&amp;Disable Debug View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="674"/>
-        <location filename="../src/mainwidget.cpp" line="680"/>
-        <location filename="../src/mainwidget.cpp" line="686"/>
-        <location filename="../src/mainwidget.cpp" line="692"/>
+        <location filename="../src/mainwidget.cpp" line="675"/>
+        <location filename="../src/mainwidget.cpp" line="681"/>
+        <location filename="../src/mainwidget.cpp" line="687"/>
+        <location filename="../src/mainwidget.cpp" line="693"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="704"/>
-        <location filename="../src/mainwidget.cpp" line="709"/>
+        <location filename="../src/mainwidget.cpp" line="705"/>
+        <location filename="../src/mainwidget.cpp" line="710"/>
         <source>Unable to start firefox, please check your installation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="705"/>
+        <location filename="../src/mainwidget.cpp" line="706"/>
         <source>Firefox has crashed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="706"/>
+        <location filename="../src/mainwidget.cpp" line="707"/>
         <source>Timeout starting firefox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwidget.cpp" line="707"/>
         <location filename="../src/mainwidget.cpp" line="708"/>
+        <location filename="../src/mainwidget.cpp" line="709"/>
         <source>I/O error has occured starting firefox</source>
         <translation type="unfinished"></translation>
     </message>
