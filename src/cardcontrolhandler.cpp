@@ -476,7 +476,7 @@ Error CardControlHandler::getPersonalDatafromCard( sc_pkcs15_card *p15card ) {
      
     
     /*
-    * Bytes 0-5 contain the ASCII encoding of the following TLV strcture's total size, in base 16.
+    * Bytes 0-5 contain the ASCII encoding of the following TLV structure's total size, in base 16.
     */
     const int personalDataMaxLen = len;
         
@@ -504,7 +504,7 @@ Error CardControlHandler::getPersonalDatafromCard( sc_pkcs15_card *p15card ) {
         return Error( SC_ERROR_INVALID_DATA, "Max File Size exceeded while gathering personal data\n");
       }
 
-      fieldSize = hexToInt( (char*) &fileData[characterOffset], 2);
+      fieldSize = hexToInt( &fileData[characterOffset], 2);
       if((fieldSize < 0) || (fieldSize + characterOffset > fileSize)) {
         sc_pkcs15_free_data_object(data_object);
         return Error( SC_ERROR_INVALID_DATA, "Invalid Field Size detected while gathering personal data\n");
@@ -518,7 +518,7 @@ Error CardControlHandler::getPersonalDatafromCard( sc_pkcs15_card *p15card ) {
       }
 
       _personalData.dataFields[fieldNr].len = fieldSize;
-      strncpy(_personalData.dataFields[fieldNr].value, &fileData[characterOffset], fieldSize);
+      memcpy(_personalData.dataFields[fieldNr].value, &fileData[characterOffset], fieldSize);
       _personalData.dataFields[fieldNr].value[fieldSize] = '\0';
 
 //       logger().log("%s\n",_personalData.dataFields[fieldNr].value);
@@ -547,10 +547,11 @@ Error CardControlHandler::getSerialDatafromCard( sc_pkcs15_card* p15card) {
   bytes = readDataFromFile(p15card, &scPath, serial, CARD_SERIAL_LENGTH);
   if( bytes < 0 || bytes > CARD_SERIAL_LENGTH ) 
     return Error( SC_ERROR_INVALID_DATA, "Invalid number of bytes have been read %d\n", bytes);
-  serial[bytes] = '\0';
-  
-  strncpy( _serialData.serial, (const char*) serial, sizeof(_serialData.serial) );
+
+  memcpy(_serialData.serial, serial, bytes);
+  _serialData.serial[bytes] = '\0';
   _serialData.isValid = true;
+
   logger().log("CARD SERIAL: %s\n", _serialData.serial);
   emit(serialDataGathered( _serialData ));
   return SC_SUCCESS;
@@ -613,7 +614,7 @@ int CardControlHandler::readDataFromFile(const sc_pkcs15_card_t *p15card, const 
 }
 
 
-int CardControlHandler::hexToInt(char *src, unsigned int len) {
+int CardControlHandler::hexToInt(const char *src, unsigned int len) {
     char hex[16];
     char *end;
     int res;
@@ -621,12 +622,12 @@ int CardControlHandler::hexToInt(char *src, unsigned int len) {
     if(len >= sizeof(hex) )
       return -1;
     
-    strncpy(hex, src, len+1);
+    memcpy(hex, src, len);
     hex[len] = '\0';
      
     res = strtol(hex, &end, 0x10);
-     if(end != (char*)&hex[len])
-             return -1;
+    if(end != (char*)&hex[len])
+      return -1;
     return res;
 }
 
