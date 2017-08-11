@@ -29,6 +29,13 @@ bool CardControlHandler::init() {
   return !err.hasError();
 }
 
+void CardControlHandler::cancel()
+{
+  if (_scCtxt) {
+      sc_cancel(_scCtxt);
+  }
+}
+
 
 void CardControlHandler::changePinPkcs15Request( const char *oldpin, const char *newpin ) {
   QMutexLocker ml( &_ccMutex );

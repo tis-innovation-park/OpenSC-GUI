@@ -88,6 +88,7 @@ MainWidget::~MainWidget() {
   logger().setLogWidget( 0 );
 
   _scThread->quit();
+  _scControl->cancel();
   _scThread->wait();
 
   delete _textEdit;

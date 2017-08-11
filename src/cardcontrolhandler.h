@@ -68,6 +68,7 @@ class CardControlHandler : public QObject {
     ~CardControlHandler();
 
     bool init();
+    void cancel();
     
     void changePinPkcs15Request( const char *oldpin, const char *newpin );
     void unblockPinPkcs15Request( const char *puk, const char *newpin );
