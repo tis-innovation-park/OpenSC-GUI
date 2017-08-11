@@ -130,14 +130,12 @@ Error CardControlHandler::connectReader( bool waitForReader ) {
   int err;
   if( sc_ctx_get_reader_count( _scCtxt ) == 0 ) { 
     if( !waitForReader ) {
-      _scReader = 0;
       return Error( SC_ERROR_NO_READERS_FOUND, "No smart card readers found.\n");
     }
     
     unsigned int event;
     logger().log("Waiting for a reader to be attached...\n");
     err = sc_wait_for_event( _scCtxt, SC_EVENT_READER_ATTACHED, &foundReader, &event, -1, NULL);
-
     if ( err ) {
       return Error( err, "Error while waiting for a reader: %s\n", sc_strerror(err));
     }
