@@ -5,6 +5,7 @@
 
 #include <QObject>
 #include <QMutexLocker>
+#include <QTimerEvent>
 
 #include "error.h"
 #include "opensc.h"
