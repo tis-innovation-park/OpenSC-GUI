@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+#include <QObject>
+#include <QMutexLocker>
+
 #include "error.h"
 #include "opensc.h"
 #include "cardctl.h"
