@@ -18,14 +18,24 @@ Error X509CertificateHandler::getX509DataFromCertificate(const sc_pkcs15_cert_t&
     return Error( SC_ERROR_OBJECT_NOT_VALID, "Could convert X509 certificate via openssl\n");
  
   //Gather Issuer Data
-  int length = X509_NAME_entry_count( x509Cert->cert_info->issuer );
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+  const X509_NAME *issuer = x509Cert->cert_info->issuer;
+#else
+  const X509_NAME *issuer = X509_get_issuer_name(x509Cert);
+#endif
+  int length = X509_NAME_entry_count(issuer);
   for (int i = 0; i < length; i++) {
-    X509_NAME_ENTRY *entry = X509_NAME_get_entry(x509Cert->cert_info->issuer , i);
+    X509_NAME_ENTRY *entry = X509_NAME_get_entry(issuer, i);
     handleEntry( entry, certData );
   }
   
   //Gather Serial Data
-  BIGNUM *bn = ASN1_INTEGER_to_BN(x509Cert->cert_info->serialNumber, NULL);
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+  const ASN1_INTEGER *serialNumber = x509Cert->cert_info->serialNumber;
+#else
+  const ASN1_INTEGER *serialNumber = X509_get_serialNumber(x509Cert);
+#endif
+  BIGNUM *bn = ASN1_INTEGER_to_BN(serialNumber, NULL);
   char *hex = BN_bn2hex(bn);
   snprintf(certData->serialNumber, CERTIFICATE_TEXT_LENGTH, "%s", hex);
   BN_free(bn);
@@ -33,10 +43,17 @@ Error X509CertificateHandler::getX509DataFromCertificate(const sc_pkcs15_cert_t&
   //cout<<"SERIAL DATA"<<certData->serialNumber<<endl;
 
   //Gather Validity Data
-//   cout<<"TIME 1: "<<x509Cert->cert_info->validity->notBefore->data<<endl;
-//   cout<<"TIME 2: "<<x509Cert->cert_info->validity->notAfter->data<<endl;
-  parseTimeTFromASN1Time(x509Cert->cert_info->validity->notBefore, &certData->validity.notBefore );
-  parseTimeTFromASN1Time(x509Cert->cert_info->validity->notAfter, &certData->validity.notAfter );
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+  const ASN1_TIME *notBefore = x509Cert->cert_info->validity->notBefore;
+  const ASN1_TIME *notAfter = x509Cert->cert_info->validity->notAfter;
+#else
+  const ASN1_TIME *notBefore = X509_get_notBefore(x509Cert);
+  const ASN1_TIME *notAfter = X509_get_notAfter(x509Cert);
+#endif
+//   cout<<"TIME 1: "<<notBefore->data<<endl;
+//   cout<<"TIME 2: "<<notAfter->data<<endl;
+  parseTimeTFromASN1Time(notBefore, &certData->validity.notBefore);
+  parseTimeTFromASN1Time(notAfter, &certData->validity.notAfter);
 //   printf ("Before time is: %s", ctime (&certData->validity.notBefore));
 //   printf ("After time is: %s", ctime (&certData->validity.notAfter));
 
@@ -49,9 +66,13 @@ Error X509CertificateHandler::getX509DataFromCertificate(const sc_pkcs15_cert_t&
 void X509CertificateHandler::handleEntry(X509_NAME_ENTRY* entry, X509CertificateHandler::X509CertificateData* certData) {
   ASN1_OBJECT* entryObject = X509_NAME_ENTRY_get_object( entry );
     
-  char buff[256];
+  char buff[256] = { 0 };
   OBJ_obj2txt(buff, 255, entryObject, 0);
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
   unsigned char* value = ASN1_STRING_data(X509_NAME_ENTRY_get_data( entry ));
+#else
+  const unsigned char* value = ASN1_STRING_get0_data(X509_NAME_ENTRY_get_data( entry ));
+#endif
   cout<<"Entry: "<<buff<<"    Value: "<<value<<endl;
   
   string entryName = buff;
